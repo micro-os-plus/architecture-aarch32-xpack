@@ -8,6 +8,8 @@ and close existing issues and pull requests.
 
 ## 2022-07-12
 
+* v3.0.0
+* 314d7e6 rework as aarch32
 * copy/paste architecture-cortexa-xpack
 
 ## 2022-06-09
