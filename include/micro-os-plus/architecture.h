@@ -10,26 +10,26 @@
  * be obtained from https://opensource.org/licenses/MIT/.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_ARCHITECTURE_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_ARCHITECTURE_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ARCHITECTURE_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ARCHITECTURE_H_
 
 // ----------------------------------------------------------------------------
 
-#include <micro-os-plus/architecture-cortexa/defines.h>
+#include <micro-os-plus/architecture-aarch32/defines.h>
 
-#include <micro-os-plus/architecture-cortexa/types.h>
-// #include <micro-os-plus/architecture-cortexa/declarations.h>
+#include <micro-os-plus/architecture-aarch32/types.h>
+// #include <micro-os-plus/architecture-aarch32/declarations.h>
 
-#include <micro-os-plus/architecture-cortexa/instructions.h>
-#include <micro-os-plus/architecture-cortexa/instructions-inlines.h>
+#include <micro-os-plus/architecture-aarch32/instructions.h>
+#include <micro-os-plus/architecture-aarch32/instructions-inlines.h>
 
-#include <micro-os-plus/architecture-cortexa/registers.h>
-#include <micro-os-plus/architecture-cortexa/registers-inlines.h>
+#include <micro-os-plus/architecture-aarch32/registers.h>
+#include <micro-os-plus/architecture-aarch32/registers-inlines.h>
 
-#include <micro-os-plus/architecture-cortexa/semihosting-inlines.h>
+#include <micro-os-plus/architecture-aarch32/semihosting-inlines.h>
 
 // ----------------------------------------------------------------------------
 
-#endif // MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_ARCHITECTURE_H_
+#endif // MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ARCHITECTURE_H_
 
 // ----------------------------------------------------------------------------

@@ -46,7 +46,7 @@ __stack_size = DEFINED(__stack_size) ? __stack_size : 16K;
 SECTIONS
 {
   /*
-   * For Cortex-A devices, the beginning of the startup code is stored in
+   * For AArch32 devices, the beginning of the startup code is stored in
    * the .interrupt_vectors section.
    */
   .interrupt_vectors : ALIGN(4)

@@ -14,7 +14,7 @@
 
 # This file is intended to be consumed by applications with:
 #
-# `subdir('xpacks/micro-os-plus-architecture-cortexa')`
+# `subdir('xpacks/micro-os-plus-architecture-aarch32')`
 #
 # The result is a dependency that can be referred as:
 #
@@ -25,7 +25,7 @@
 
 # -----------------------------------------------------------------------------
 
-message('Processing xPack @micro-os-plus/architecture-cortexa...')
+message('Processing xPack @micro-os-plus/architecture-aarch32...')
 
 # https://mesonbuild.com/Reference-manual_functions.html#declare_dependency
 micro_os_plus_architecture_dependency = declare_dependency(

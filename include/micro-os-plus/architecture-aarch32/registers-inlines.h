@@ -10,15 +10,15 @@
  * be obtained from https://opensource.org/licenses/MIT/.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_REGISTERS_INLINES_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_REGISTERS_INLINES_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_AARCH32_REGISTERS_INLINES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_AARCH32_REGISTERS_INLINES_H_
 
 // ----------------------------------------------------------------------------
 
 #include <stdint.h>
 
 // ----------------------------------------------------------------------------
-// Inline implementations for the Cortex-A architecture instructions.
+// Inline implementations for the AArch32 architecture instructions.
 
 #if defined(__cplusplus)
 extern "C"
@@ -27,8 +27,8 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline __attribute__ ((always_inline)) cortexa_architecture_register_t
-  cortexa_architecture_get_msp (void)
+  static inline __attribute__ ((always_inline)) aarch32_architecture_register_t
+  aarch32_architecture_get_msp (void)
   {
     uint32_t result;
 
@@ -48,7 +48,7 @@ extern "C"
   micro_os_plus_architecture_register_t
   micro_os_plus_architecture_get_sp (void)
   {
-    return cortexa_architecture_get_msp ();
+    return aarch32_architecture_get_msp ();
   }
 
   // --------------------------------------------------------------------------
@@ -61,18 +61,18 @@ extern "C"
 
 #if defined(__cplusplus)
 
-namespace cortexa::architecture::registers
+namespace aarch32::architecture::registers
 {
   // --------------------------------------------------------------------------
 
   inline __attribute__ ((always_inline)) register_t
   msp (void)
   {
-    return cortexa_architecture_get_msp ();
+    return aarch32_architecture_get_msp ();
   }
 
   // --------------------------------------------------------------------------
-} // namespace cortexa::architecture::registers
+} // namespace aarch32::architecture::registers
 
 namespace micro_os_plus::architecture::registers
 {
@@ -91,6 +91,6 @@ namespace micro_os_plus::architecture::registers
 
 // ----------------------------------------------------------------------------
 
-#endif // MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_REGISTERS_INLINES_H_
+#endif // MICRO_OS_PLUS_ARCHITECTURE_AARCH32_REGISTERS_INLINES_H_
 
 // ----------------------------------------------------------------------------

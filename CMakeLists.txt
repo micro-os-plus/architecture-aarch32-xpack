@@ -14,11 +14,11 @@
 
 # This file is intended to be consumed by applications with:
 #
-# `add_subdirectory("xpacks/micro-os-plus-architecture-cortexa")`
+# `add_subdirectory("xpacks/micro-os-plus-architecture-aarch32")`
 #
 # The result is an interface library that can be added to the linker with:
 #
-# `target_link_libraries(your-target PUBLIC micro-os-plus::architecture-cortexa)`
+# `target_link_libraries(your-target PUBLIC micro-os-plus::architecture-aarch32)`
 
 # -----------------------------------------------------------------------------
 ## Preamble ##
@@ -27,8 +27,8 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(
-  micro-os-plus-architecture-cortexa
-  DESCRIPTION "µOS++ Arm Cortex-A architecture"
+  micro-os-plus-architecture-aarch32
+  DESCRIPTION "µOS++ Arm AArch32 architecture"
 )
 
 if(COMMAND xpack_get_package_name_and_version)
@@ -44,43 +44,43 @@ endif()
 # INTERFACE: usage definitions, passed up to targets linking to it
 # PUBLIC: both
 
-add_library(micro-os-plus-architecture-cortexa-interface INTERFACE EXCLUDE_FROM_ALL)
+add_library(micro-os-plus-architecture-aarch32-interface INTERFACE EXCLUDE_FROM_ALL)
 
 # -----------------------------------------------------------------------------
 # Target settings.
 
-target_include_directories(micro-os-plus-architecture-cortexa-interface INTERFACE
+target_include_directories(micro-os-plus-architecture-aarch32-interface INTERFACE
   "include"
 )
 
-target_sources(micro-os-plus-architecture-cortexa-interface INTERFACE
+target_sources(micro-os-plus-architecture-aarch32-interface INTERFACE
 )
 
-target_compile_definitions(micro-os-plus-architecture-cortexa-interface INTERFACE
+target_compile_definitions(micro-os-plus-architecture-aarch32-interface INTERFACE
   # None.
 )
 
-target_compile_options(micro-os-plus-architecture-cortexa-interface INTERFACE
+target_compile_options(micro-os-plus-architecture-aarch32-interface INTERFACE
   # None.
 )
 
-target_link_libraries(micro-os-plus-architecture-cortexa-interface INTERFACE
+target_link_libraries(micro-os-plus-architecture-aarch32-interface INTERFACE
   # Dependencies
   # None.
 )
 
 if (COMMAND xpack_display_target_lists)
-  xpack_display_target_lists(micro-os-plus-architecture-cortexa-interface)
+  xpack_display_target_lists(micro-os-plus-architecture-aarch32-interface)
 endif()
 
 # -----------------------------------------------------------------------------
 # Aliases.
 
 # https://cmake.org/cmake/help/v3.20/command/add_library.html#alias-libraries
-add_library(micro-os-plus::architecture-cortexa ALIAS micro-os-plus-architecture-cortexa-interface)
-message(VERBOSE "> micro-os-plus::architecture-cortexa -> micro-os-plus-architecture-cortexa-interface")
+add_library(micro-os-plus::architecture-aarch32 ALIAS micro-os-plus-architecture-aarch32-interface)
+message(VERBOSE "> micro-os-plus::architecture-aarch32 -> micro-os-plus-architecture-aarch32-interface")
 
-add_library(micro-os-plus::architecture ALIAS micro-os-plus-architecture-cortexa-interface)
-message(VERBOSE "> micro-os-plus::architecture -> micro-os-plus-architecture-cortexa-interface")
+add_library(micro-os-plus::architecture ALIAS micro-os-plus-architecture-aarch32-interface)
+message(VERBOSE "> micro-os-plus::architecture -> micro-os-plus-architecture-aarch32-interface")
 
 # -----------------------------------------------------------------------------

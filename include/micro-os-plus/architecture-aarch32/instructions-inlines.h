@@ -10,15 +10,15 @@
  * be obtained from https://opensource.org/licenses/MIT/.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_INSTRUCTIONS_INLINES_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_INSTRUCTIONS_INLINES_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INSTRUCTIONS_INLINES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INSTRUCTIONS_INLINES_H_
 
 // ----------------------------------------------------------------------------
 
 #include <stdint.h>
 
 // ----------------------------------------------------------------------------
-// Inline implementations for the Cortex-A architecture instructions.
+// Inline implementations for the AArch32 architecture instructions.
 
 #if defined(__cplusplus)
 extern "C"
@@ -28,7 +28,7 @@ extern "C"
   // --------------------------------------------------------------------------
 
   static inline __attribute__ ((always_inline)) void
-  cortexa_architecture_nop (void)
+  aarch32_architecture_nop (void)
   {
     __asm__ volatile(
 
@@ -41,35 +41,20 @@ extern "C"
   }
 
   static inline __attribute__ ((always_inline)) void
-  cortexa_architecture_bkpt (void)
+  aarch32_architecture_bkpt (void)
   {
-#if defined(__ARM_ARCH_8A)
     __asm__ volatile(
 
-        // See 'aarch64-tdep.c' in GDB source, 'aarch64_default_breakpoint'
-        // " .inst 0xd4200000 "
-        " brk #0 "
+        " bkpt 0 "
 
         : /* Outputs */
         : /* Inputs */
         : /* Clobbers */
     );
-#elif defined(__ARM_ARCH_7A__)
-  __asm__ volatile(
-
-      " bkpt 0 "
-
-      : /* Outputs */
-      : /* Inputs */
-      : /* Clobbers */
-  );
-#else
-#error "Unsupported architecture."
-#endif
   }
 
   static inline __attribute__ ((always_inline)) void
-  cortexa_architecture_wfi (void)
+  aarch32_architecture_wfi (void)
   {
     __asm__ volatile(
 
@@ -84,7 +69,7 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   micro_os_plus_architecture_nop (void)
   {
-    cortexa_architecture_nop ();
+    aarch32_architecture_nop ();
   }
 
   /**
@@ -93,7 +78,7 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   micro_os_plus_architecture_brk (void)
   {
-    cortexa_architecture_bkpt ();
+    aarch32_architecture_bkpt ();
   }
 
   /**
@@ -102,7 +87,7 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   micro_os_plus_architecture_wfi (void)
   {
-    cortexa_architecture_wfi ();
+    aarch32_architecture_wfi ();
   }
 
   // --------------------------------------------------------------------------
@@ -115,30 +100,30 @@ extern "C"
 
 #if defined(__cplusplus)
 
-namespace cortexa::architecture
+namespace aarch32::architecture
 {
   // --------------------------------------------------------------------------
 
   inline __attribute__ ((always_inline)) void
   nop (void)
   {
-    cortexa_architecture_nop ();
+    aarch32_architecture_nop ();
   }
 
   inline __attribute__ ((always_inline)) void
   bkpt (void)
   {
-    cortexa_architecture_bkpt ();
+    aarch32_architecture_bkpt ();
   }
 
   inline __attribute__ ((always_inline)) void
   wfi (void)
   {
-    cortexa_architecture_wfi ();
+    aarch32_architecture_wfi ();
   }
 
   // --------------------------------------------------------------------------
-} // namespace cortexa::architecture
+} // namespace aarch32::architecture
 
 namespace micro_os_plus::architecture
 {
@@ -147,19 +132,19 @@ namespace micro_os_plus::architecture
   inline __attribute__ ((always_inline)) void
   nop (void)
   {
-    cortexa::architecture::nop ();
+    aarch32::architecture::nop ();
   }
 
   inline __attribute__ ((always_inline)) void
   brk (void)
   {
-    cortexa::architecture::bkpt ();
+    aarch32::architecture::bkpt ();
   }
 
   inline __attribute__ ((always_inline)) void
   wfi (void)
   {
-    cortexa::architecture::wfi ();
+    aarch32::architecture::wfi ();
   }
 
   // --------------------------------------------------------------------------
@@ -169,6 +154,6 @@ namespace micro_os_plus::architecture
 
 // ----------------------------------------------------------------------------
 
-#endif // MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_INSTRUCTIONS_INLINES_H_
+#endif // MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INSTRUCTIONS_INLINES_H_
 
 // ----------------------------------------------------------------------------

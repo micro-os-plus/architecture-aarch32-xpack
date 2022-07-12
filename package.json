@@ -1,7 +1,7 @@
 {
-  "name": "@micro-os-plus/architecture-cortexa",
+  "name": "@micro-os-plus/architecture-aarch32",
   "version": "2.0.0",
-  "description": "A source library xPack with the µOS++ Arm Cortex-A architecture",
+  "description": "A source library xPack with the µOS++ Arm AArch32 architecture",
   "main": "",
   "scripts": {
     "npm-install": "npm install",
@@ -13,16 +13,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/micro-os-plus/architecture-cortexa-xpack.git/"
+    "url": "https://github.com/micro-os-plus/architecture-aarch32-xpack.git/"
   },
   "keywords": [
     "xpack",
     "c++",
     "posix",
     "micro-os-plus",
-    "cortex-a"
+    "aarch32"
   ],
-  "homepage": "https://github.com/micro-os-plus/architecture-cortexa-xpack/",
+  "homepage": "https://github.com/micro-os-plus/architecture-aarch32-xpack/",
   "author": {
     "name": "Liviu Ionescu",
     "email": "ilg@livius.net",
@@ -30,7 +30,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/micro-os-plus/architecture-cortexa-xpack/issues/"
+    "url": "https://github.com/micro-os-plus/architecture-aarch32-xpack/issues/"
   },
   "config": {},
   "xpack": {}

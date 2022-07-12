@@ -10,8 +10,8 @@
  * be obtained from https://opensource.org/licenses/MIT/.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_TYPES_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_TYPES_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_AARCH32_TYPES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_AARCH32_TYPES_H_
 
 // ----------------------------------------------------------------------------
 
@@ -22,13 +22,8 @@ extern "C"
 {
 #endif // defined(__cplusplus)
 
-#if defined(__ARM_ARCH_8A)
-  typedef uint64_t cortexa_architecture_register_t;
-  typedef uint64_t micro_os_plus_architecture_register_t;
-#else
-typedef uint32_t cortexa_architecture_register_t;
-typedef uint32_t micro_os_plus_architecture_register_t;
-#endif
+  typedef uint32_t aarch32_architecture_register_t;
+  typedef uint32_t micro_os_plus_architecture_register_t;
 
 #if defined(__cplusplus)
 }
@@ -40,20 +35,20 @@ typedef uint32_t micro_os_plus_architecture_register_t;
 
 // ----------------------------------------------------------------------------
 
-namespace cortexa::architecture
+namespace aarch32::architecture
 {
   // --------------------------------------------------------------------------
 
-  using register_t = cortexa_architecture_register_t;
+  using register_t = aarch32_architecture_register_t;
 
   // --------------------------------------------------------------------------
-} // namespace cortexa::architecture
+} // namespace aarch32::architecture
 
 namespace micro_os_plus::architecture
 {
   // --------------------------------------------------------------------------
 
-  using register_t = cortexa_architecture_register_t;
+  using register_t = aarch32_architecture_register_t;
 
   // --------------------------------------------------------------------------
 } // namespace micro_os_plus::architecture
@@ -64,6 +59,6 @@ namespace micro_os_plus::architecture
 
 // ----------------------------------------------------------------------------
 
-#endif // MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_TYPES_H_
+#endif // MICRO_OS_PLUS_ARCHITECTURE_AARCH32_TYPES_H_
 
 // ----------------------------------------------------------------------------

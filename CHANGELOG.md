@@ -3,8 +3,12 @@
 Releases in reverse chronological order.
 
 Please check
-[GitHub](https://github.com/micro-os-plus/architecture-cortexa-xpack/issues/)
+[GitHub](https://github.com/micro-os-plus/architecture-aarch32-xpack/issues/)
 and close existing issues and pull requests.
+
+## 2022-07-12
+
+* copy/paste architecture-cortexa-xpack
 
 ## 2022-06-09
 

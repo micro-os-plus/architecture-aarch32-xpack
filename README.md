@@ -1,10 +1,10 @@
-[![license](https://img.shields.io/github/license/micro-os-plus/architecture-cortexa-xpack)](https://github.com/micro-os-plus/architecture-cortexa-xpack/blob/xpack/LICENSE)
-[![CI on Push](https://github.com/micro-os-plus/architecture-cortexa-xpack/workflows/CI%20on%20Push/badge.svg)](https://github.com/micro-os-plus/architecture-cortexa-xpack/actions?query=workflow%3A%22CI+on+Push%22)
+[![license](https://img.shields.io/github/license/micro-os-plus/architecture-aarch32-xpack)](https://github.com/micro-os-plus/architecture-aarch32-xpack/blob/xpack/LICENSE)
+[![CI on Push](https://github.com/micro-os-plus/architecture-aarch32-xpack/workflows/CI%20on%20Push/badge.svg)](https://github.com/micro-os-plus/architecture-aarch32-xpack/actions?query=workflow%3A%22CI+on+Push%22)
 
-# A source library xPacks with the µOS++ Arm Cortex-A architecture definitions
+# A source library xPacks with the µOS++ Arm AArch32 architecture definitions
 
 The project is hosted on GitHub as
-[micro-os-plus/architecture-cortexa-xpack](https://github.com/micro-os-plus/architecture-cortexa-xpack).
+[micro-os-plus/architecture-aarch32-xpack](https://github.com/micro-os-plus/architecture-aarch32-xpack).
 
 ## Maintainer info
 
@@ -37,20 +37,20 @@ For now, it can be installed from GitHub:
 cd my-project
 xpm init # Unless a package.json is already present
 
-xpm install github:micro-os-plus/architecture-cortexa-xpack
+xpm install github:micro-os-plus/architecture-aarch32-xpack
 ```
 
 When ready, this package will be available as
-[`@micro-os-plus/architecture-cortexa`](https://www.npmjs.com/package/@micro-os-plus/architecture-cortexa)
+[`@micro-os-plus/architecture-aarch32`](https://www.npmjs.com/package/@micro-os-plus/architecture-aarch32)
 from the `npmjs.com` registry:
 
 ```sh
 cd my-project
 xpm init # Unless a package.json is already present
 
-xpm install @micro-os-plus/architecture-cortexa@latest
+xpm install @micro-os-plus/architecture-aarch32@latest
 
-ls -l xpacks/micro-os-plus-architecture-cortexa
+ls -l xpacks/micro-os-plus-architecture-aarch32
 ```
 
 ### Git submodule
@@ -63,8 +63,8 @@ cd my-project
 git init # Unless already a Git project
 mkdir -p xpacks
 
-git submodule add https://github.com/micro-os-plus/architecture-cortexa-xpack.git \
-  xpacks/micro-os-plus-architecture-cortexa
+git submodule add https://github.com/micro-os-plus/architecture-aarch32-xpack.git \
+  xpacks/micro-os-plus-architecture-aarch32
 ```
 
 ## Branches
@@ -82,13 +82,13 @@ into `xpack`.
 
 ## Developer info
 
-This source xPack provides general Cortex-A definitions an
+This source xPack provides general AArch32 definitions an
 the implementation for the µOS++ scheduler,
-running on **Arm Cortex-A** devices.
+running on **Arm AArch32** devices. (not yet)
 
 ### Status
 
-The µOS++ Cortex-A definitions are minimalistic, for running the tests.
+The µOS++ AArch32 definitions are minimalistic, for running the tests.
 
 ### Build & integration info
 
@@ -130,8 +130,8 @@ Portable:
 
 Architecture specific:
 
-- `cortexa::architecture`
-- `cortexa::architecture::registers`
+- `aarch32::architecture`
+- `aarch32::architecture::registers`
 
 #### C++ Classes
 

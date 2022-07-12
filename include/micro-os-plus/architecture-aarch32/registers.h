@@ -1,7 +1,7 @@
 /*
  * This file is part of the µOS++ distribution.
  *   (https://github.com/micro-os-plus/)
- * Copyright (c) 2017 Liviu Ionescu.
+ * Copyright (c) 2022 Liviu Ionescu.
  *
  * Permission to use, copy, modify, and/or distribute this software
  * for any purpose is hereby granted, under the terms of the MIT license.
@@ -10,17 +10,17 @@
  * be obtained from https://opensource.org/licenses/MIT/.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_INSTRUCTIONS_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_INSTRUCTIONS_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INSTRUCTIONS_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INSTRUCTIONS_H_
 
 // ----------------------------------------------------------------------------
 
-#include <micro-os-plus/architecture-cortexa/defines.h>
+#include <micro-os-plus/architecture-aarch32/defines.h>
 
 #include <stdint.h>
 
 // ----------------------------------------------------------------------------
-// Declarations of Cortex-A functions to wrap architecture instructions.
+// Declarations of AArch32 functions to wrap architecture instructions.
 
 #if defined(__cplusplus)
 extern "C"
@@ -28,46 +28,26 @@ extern "C"
 #endif // defined(__cplusplus)
 
   // --------------------------------------------------------------------------
-  // Architecture assembly instructions in C.
+  // Architecture registers getters and mutators in C.
 
   /**
-   * `nop` instruction.
+   * Main Stack Pointer getter.
    */
-  static void
-  cortexa_architecture_nop (void);
+  static aarch32_architecture_register_t
+  aarch32_architecture_get_msp (void);
 
-  /**
-   * `bkpt` instruction.
-   */
-  static void
-  cortexa_architecture_bkpt (void);
-
-  /**
-   * `wfi` instruction.
-   */
-  static void
-  cortexa_architecture_wfi (void);
+  // TODO: add setter.
 
   // --------------------------------------------------------------------------
   // Portable architecture assembly instructions in C.
 
   /**
-   * `nop` instruction.
+   * Stack Pointer getter.
    */
-  static void
-  micro_os_plus_architecture_nop (void);
+  static micro_os_plus_architecture_register_t
+  micro_os_plus_architecture_get_sp (void);
 
-  /**
-   * `break` instruction.
-   */
-  static void
-  micro_os_plus_architecture_brk (void);
-
-  /**
-   * `wfi` instruction.
-   */
-  static void
-  micro_os_plus_architecture_wfi (void);
+  // TODO: add setter.
 
   // --------------------------------------------------------------------------
 
@@ -79,62 +59,42 @@ extern "C"
 
 #if defined(__cplusplus)
 
-namespace cortexa::architecture
+namespace aarch32::architecture::registers
 {
   // --------------------------------------------------------------------------
-  // Architecture assembly instructions in C++.
+  // Architecture getters in C++.
 
   /**
-   * The assembler `nop` instruction.
+   * Main Stack Pointer getter.
    */
-  void
-  nop (void);
+  register_t
+  msp (void);
 
-  /**
-   * The assembler `bkpt` instruction.
-   */
-  void
-  bkpt (void);
-
-  /**
-   * The assembler `wfi` instruction.
-   */
-  void
-  wfi (void);
+  // TODO: add setter.
 
   // --------------------------------------------------------------------------
-} // namespace cortexa::architecture
+} // namespace aarch32::architecture::registers
 
-namespace micro_os_plus::architecture
+namespace micro_os_plus::architecture::registers
 {
   // --------------------------------------------------------------------------
   // Portable architecture assembly instructions in C++.
 
   /**
-   * The assembler `nop` instruction.
+   * Main Stack Pointer getter.
    */
-  void
-  nop (void);
+  register_t
+  sp (void);
 
-  /**
-   * The assembler `bkpt` instruction.
-   */
-  void
-  brk (void);
-
-  /**
-   * The assembler `wfi` instruction.
-   */
-  void
-  wfi (void);
+  // TODO: add setter.
 
   // --------------------------------------------------------------------------
-} // namespace micro_os_plus::architecture
+} // namespace micro_os_plus::architecture::registers
 
 #endif // defined(__cplusplus)
 
 // ----------------------------------------------------------------------------
 
-#endif // MICRO_OS_PLUS_ARCHITECTURE_CORTEXA_INSTRUCTIONS_H_
+#endif // MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INSTRUCTIONS_H_
 
 // ----------------------------------------------------------------------------
