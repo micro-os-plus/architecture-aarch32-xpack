@@ -17,6 +17,7 @@
     "SERR",
     "SRSFD",
     "Takeharu",
+    "Xpmake",
     "aarch32",
     "abbrev",
     "aranges",
@@ -69,6 +70,7 @@
     "sbrk",
     "sbss",
     "sdata",
+    "semihosted",
     "semihosting",
     "serror",
     "sfnames",
@@ -85,5 +87,6 @@
     "xpack",
     "xpacks"
   ],
-  "cmake.configureOnOpen": false
+  "cmake.configureOnOpen": false,
+  "editor.wordWrap": "on"
 }
