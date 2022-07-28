@@ -25,13 +25,13 @@ extern "C"
 {
 #endif // defined(__cplusplus)
 
-  // ----------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
   // Type of each entry in a parameter block.
   typedef micro_os_plus_architecture_register_t
       micro_os_plus_semihosting_param_block_t;
   // Type of result.
-  typedef micro_os_plus_architecture_register_t
+  typedef micro_os_plus_architecture_signed_register_t
       micro_os_plus_semihosting_response_t;
 
 // SWI numbers and reason codes for RDI (Angel) monitors.
@@ -41,7 +41,6 @@ extern "C"
 #define AngelSWI 0xAB
 #elif defined(__arm__)
 #define AngelSWI 0x123456
-
 #else
 #error "Unsupported architecture."
 #endif
