@@ -216,9 +216,9 @@ backwards incompatible changes are introduced to the public API.
 The incompatible changes, in reverse chronological order,
 are:
 
-- v2.x: exception handling moved to qemu device for now;
-  sections-flash.ld removed
-- v1.x: initial release
+- v3.x: rework as aarch32
+
+(previous versions were part of `architecture-cortexa`)
 
 ## License
 
