@@ -6,6 +6,16 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-aarch32-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2022-07-28
+
+* v3.1.0
+* 8bf31a0 #2: Add signed_register_t for semihosting result
+
+## 2022-07-25
+
+* d2a2e25 defines.h: comment out MICRO_OS_PLUS_HAS_INTERRUPTS_STACK
+* ed04aca add preliminary xpack.json
+
 ## 2022-07-12
 
 * v3.0.0
