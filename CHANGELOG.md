@@ -6,6 +6,21 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-aarch32-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2023-05-08
+
+* v3.2.0
+* 75217ed #3: add _init_fini.c
+* 75217ed #3: add _init_fini.c
+
+## 2022-08-16
+
+* d2b4ab7 package.json min 0.14.0 & defaults
+
+## 2022-08-03
+
+* 22b494b .vscode/settings.json: cmake.ignoreCMakeListsMissing
+* e8c242e .vscode/settings.json: makefile.configureOnOpen
+
 ## 2022-07-28
 
 * v3.1.0
