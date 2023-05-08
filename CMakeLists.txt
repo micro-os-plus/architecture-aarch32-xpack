@@ -54,7 +54,7 @@ target_include_directories(micro-os-plus-architecture-aarch32-interface INTERFAC
 )
 
 target_sources(micro-os-plus-architecture-aarch32-interface INTERFACE
-  # None.
+  "src/_init_fini.c"
 )
 
 target_compile_definitions(micro-os-plus-architecture-aarch32-interface INTERFACE

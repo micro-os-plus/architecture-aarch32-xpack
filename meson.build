@@ -33,10 +33,13 @@ micro_os_plus_architecture_dependency = declare_dependency(
     'include',
   ),
   sources: files(
+    'src/_init_fini.c'
   ),
   compile_args: [
+    # None.
   ],
   dependencies: [
+    # None.
   ]
 )
 
