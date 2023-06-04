@@ -51,7 +51,7 @@ xpm init # Unless a package.json is already present
 
 xpm install @micro-os-plus/architecture-aarch32@latest
 
-ls -l xpacks/micro-os-plus-architecture-aarch32
+ls -l xpacks/@micro-os-plus/architecture-aarch32
 ```
 
 ### Git submodule
@@ -65,7 +65,7 @@ git init # Unless already a Git project
 mkdir -p xpacks
 
 git submodule add https://github.com/micro-os-plus/architecture-aarch32-xpack.git \
-  xpacks/micro-os-plus-architecture-aarch32
+  xpacks/@micro-os-plus/architecture-aarch32
 ```
 
 ## Branches
@@ -158,7 +158,7 @@ To integrate the architecture-aarch32 source library into a CMake application,
 add this folder to the build:
 
 ```cmake
-add_subdirectory("xpacks/micro-os-plus-architecture-aarch32")`
+add_subdirectory("xpacks/@micro-os-plus/architecture-aarch32")`
 ```
 
 The result is an interface library that can be added as an application
@@ -177,7 +177,7 @@ To integrate the architecture-aarch32 library into a meson application,
 add this folder to the build:
 
 ```meson
-subdir('xpacks/micro-os-plus-architecture-aarch32')
+subdir('xpacks/@micro-os-plus/architecture-aarch32')
 ```
 
 The result is a dependency object that can be added
