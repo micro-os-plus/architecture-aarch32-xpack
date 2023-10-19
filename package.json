@@ -1,7 +1,7 @@
 {
   "name": "@micro-os-plus/architecture-aarch32",
   "version": "3.2.0",
-  "description": "A source library xPack with the µOS++ Arm AArch32 architecture",
+  "description": "A source code library with the µOS++ Arm AArch32 architecture",
   "main": "",
   "scripts": {
     "npm-install": "npm install",
