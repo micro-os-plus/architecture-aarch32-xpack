@@ -1,0 +1,28 @@
+{
+  "$schema": "https://xpack.github.io/xcdl/schemas/xcdl-2.0.0.json",
+  "minimumXcdlRequired": "2.0.0",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2022-2026 Liviu Ionescu. All rights reserved.",
+  "description": "Top architecture aarch32 components",
+  "cdlComponents": [
+    {
+      "id": "micro-os-plus.architectures.aarch32",
+      "alias": "micro-os-plus.architecture",
+      "description": "The AArch32 architecture definitions",
+      "publicIncludeFolders": [
+        "include"
+      ],
+      "sourceFiles": [
+        "src/_init_fini.c",
+        "src/semihosting.cpp"
+      ],
+      "dependencies": [
+        "micro-os-plus.semihosting"
+      ],
+      "implementedInterfaces": [
+        "micro-os-plus.architectures.interface"
+      ],
+      // "defaultDefine": "MICRO_OS_PLUS_INCLUDE_ARCHITECTURE_AARCH32"
+    }
+  ]
+}

@@ -32,13 +32,14 @@ micro_os_plus_architecture_dependency = declare_dependency(
     'include',
   ),
   sources: files(
-    'src/_init_fini.c'
+    'src/_init_fini.c',
+      'src/semihosting.cpp',
   ),
   compile_args: [
     # None.
   ],
   dependencies: [
-    # None.
+    micro_os_plus_semihosting_dependency,
   ]
 )
 

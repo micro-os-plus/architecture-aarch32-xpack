@@ -54,6 +54,7 @@ target_include_directories(micro-os-plus-architecture-aarch32-interface INTERFAC
 
 target_sources(micro-os-plus-architecture-aarch32-interface INTERFACE
   "src/_init_fini.c"
+  "src/semihosting.cpp"
 )
 
 target_compile_definitions(micro-os-plus-architecture-aarch32-interface INTERFACE
@@ -65,8 +66,7 @@ target_compile_options(micro-os-plus-architecture-aarch32-interface INTERFACE
 )
 
 target_link_libraries(micro-os-plus-architecture-aarch32-interface INTERFACE
-  # Dependencies
-  # None.
+  "micro-os-plus::semihosting"
 )
 
 if (COMMAND xpack_display_target_lists)
