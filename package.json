@@ -10,16 +10,16 @@
     "aarch32"
   ],
   "license": "MIT",
-   "author": {
+  "author": {
     "name": "Liviu Ionescu",
     "email": "ilg@livius.net",
     "url": "https://github.com/ilg-ul"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/micro-os-plus/architecture-aarch32-xpack.git"
+    "url": "git+https://github.com/micro-os-plus/architecture-aarch32-xpack.git"
   },
-  "homepage": "https://github.com/micro-os-plus/architecture-aarch32-xpack",
+  "homepage": "https://micro-os-plus.github.io/architecture-aarch32-xpack/",
   "bugs": {
     "url": "https://github.com/micro-os-plus/architecture-aarch32-xpack/issues"
   },
