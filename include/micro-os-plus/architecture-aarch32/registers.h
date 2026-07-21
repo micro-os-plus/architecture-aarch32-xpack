@@ -92,6 +92,11 @@ namespace micro_os_plus::architecture::registers
 
 #endif // defined(__cplusplus)
 
+// ============================================================================
+// Templates, inlines & constexpr implementations.
+
+#include <micro-os-plus/architecture-aarch32/inlines/registers-inlines.h>
+
 // ----------------------------------------------------------------------------
 
 #endif // MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INSTRUCTIONS_H_
