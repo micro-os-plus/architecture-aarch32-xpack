@@ -29,7 +29,7 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   aarch32_architecture_nop (void)
   {
-    __asm__ volatile(
+    __asm__ volatile (
 
         " nop "
 
@@ -42,7 +42,7 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   aarch32_architecture_bkpt (void)
   {
-    __asm__ volatile(
+    __asm__ volatile (
 
         " bkpt 0 "
 
@@ -55,7 +55,7 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   aarch32_architecture_wfi (void)
   {
-    __asm__ volatile(
+    __asm__ volatile (
 
         " wfi "
 

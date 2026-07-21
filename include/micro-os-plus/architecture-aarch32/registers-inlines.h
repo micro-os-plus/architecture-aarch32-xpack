@@ -31,7 +31,7 @@ extern "C"
   {
     uint32_t result;
 
-    __asm__ volatile(
+    __asm__ volatile (
 
         "msr %0, msp"
 
@@ -43,9 +43,9 @@ extern "C"
     return result;
   }
 
-  static inline __attribute__ ((always_inline))
-  micro_os_plus_architecture_register_t
-  micro_os_plus_architecture_get_sp (void)
+  static inline
+      __attribute__ ((always_inline)) micro_os_plus_architecture_register_t
+      micro_os_plus_architecture_get_sp (void)
   {
     return aarch32_architecture_get_msp ();
   }
