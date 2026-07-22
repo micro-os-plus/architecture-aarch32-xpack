@@ -76,11 +76,6 @@ target_sources (
                                                           "src/semihosting.cpp"
 )
 
-target_link_libraries (
-  micro-os-plus-architectures-aarch32-interface
-  INTERFACE "micro-os-plus::semihosting"
-)
-
 if (COMMAND xpack_display_target_lists)
   xpack_display_target_lists (micro-os-plus-architectures-aarch32-interface)
 endif ()

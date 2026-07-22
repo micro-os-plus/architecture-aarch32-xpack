@@ -55,10 +55,6 @@ _local_sources += [
   'src/semihosting.cpp',
 ]
 
-_local_dependencies += [
-  micro_os_plus_semihosting_dependency,
-]
-
 # https://mesonbuild.com/Reference-manual_functions.html#declare_dependency
 micro_os_plus_architectures_aarch32_dependency = declare_dependency(
   include_directories: include_directories(_local_include_directories),

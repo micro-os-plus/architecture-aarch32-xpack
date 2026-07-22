@@ -17,7 +17,8 @@
         "src/semihosting.cpp"
       ],
       "dependencies": [
-        "micro-os-plus.semihosting"
+        // This introduces a circular dependency.
+        // "micro-os-plus.semihosting"
       ],
       "implementedInterfaces": [
         "micro-os-plus.architectures.interface"
