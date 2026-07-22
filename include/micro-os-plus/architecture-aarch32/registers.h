@@ -95,7 +95,7 @@ namespace micro_os_plus::architecture::registers
 // ============================================================================
 // Templates, inlines & constexpr implementations.
 
-#include <micro-os-plus/architecture-aarch32/inlines/registers-inlines.h>
+#include "inlines/registers-inlines.h"
 
 // ----------------------------------------------------------------------------
 

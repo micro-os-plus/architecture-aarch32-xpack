@@ -14,6 +14,24 @@
 
 // ----------------------------------------------------------------------------
 
+#if defined(__cplusplus)
+#if !(__cplusplus >= 202002L || (defined(_MSVC_LANG) && _MSVC_LANG >= 202002L))
+#error "C++20 or higher is required"
+#endif
+#endif // defined(__cplusplus)
+
+#if __has_include(<micro-os-plus/project-config.h>)
+#include <micro-os-plus/project-config.h>
+#elif __has_include(<micro-os-plus/config.h>)
+#pragma message \
+    "micro-os-plus/config.h is deprecated, rename to micro-os-plus/project-config.h and include it instead of micro-os-plus/config.h"
+#include <micro-os-plus/config.h>
+#endif // __has_include(<micro-os-plus/project-config.h>)
+
+#if __has_include(<micro-os-plus/device-defines.h>)
+#include <micro-os-plus/device-defines.h>
+#endif // __has_include(<micro-os-plus/device-defines.h>)
+
 #include <micro-os-plus/architecture-aarch32/defines.h>
 
 #include <micro-os-plus/architecture-aarch32/types.h>

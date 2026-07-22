@@ -135,7 +135,7 @@ namespace micro_os_plus::architecture
 // ============================================================================
 // Templates, inlines & constexpr implementations.
 
-#include <micro-os-plus/architecture-aarch32/inlines/instructions-inlines.h>
+#include "inlines/instructions-inlines.h"
 
 // ----------------------------------------------------------------------------
 
