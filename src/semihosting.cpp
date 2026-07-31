@@ -15,6 +15,10 @@
 
 // ----------------------------------------------------------------------------
 
+#if defined(MICRO_OS_PLUS_SEMIHOSTING_ENABLED)
+
+// ---------------------------------------------------------------------------
+
 // SWI numbers and reason codes for RDI (Angel) monitors.
 #define AngelSWIInsn "swi"
 // The order is important, since Cortex-M defines both.
@@ -51,5 +55,9 @@ micro_os_plus_semihosting_call_host (
   // Angel is respecting the APCS.
   return value;
 }
+
+// ----------------------------------------------------------------------------
+
+#endif // defined(MICRO_OS_PLUS_SEMIHOSTING_ENABLED)
 
 // ----------------------------------------------------------------------------
