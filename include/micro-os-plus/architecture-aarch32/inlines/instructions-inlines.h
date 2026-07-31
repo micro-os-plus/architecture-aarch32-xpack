@@ -9,8 +9,8 @@
  * obtained from https://opensource.org/licenses/mit.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INSTRUCTIONS_INLINES_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INSTRUCTIONS_INLINES_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INLINES_INSTRUCTIONS_INLINES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INLINES_INSTRUCTIONS_INLINES_H_
 
 // ----------------------------------------------------------------------------
 
