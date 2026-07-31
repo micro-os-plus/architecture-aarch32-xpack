@@ -6,8 +6,22 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-aarch32-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-07-31
+
+* ff5577d semihosting.cpp if defined()
+* 7685f66 xcdl-package.jsonc updates
+* 0ce16ad include "..." updates
+* 154db9b inlines guard updates
+
+## 2026-07-22
+
+* a87c38f xcdl export
+* 325ec8a re-work with inlines folder
+
 ## 2026-07-21
 
+* 9d3d57d re-work with inlines folder
+* ef315d7 prepare 4.0.0
 * 48e189f re-format clang
 * aab2e86 xcdl export
 * f56a708 re-generate top commons
