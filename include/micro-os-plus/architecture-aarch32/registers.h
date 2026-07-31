@@ -14,7 +14,7 @@
 
 // ----------------------------------------------------------------------------
 
-#include <micro-os-plus/architecture-aarch32/defines.h>
+#include "micro-os-plus/architecture-aarch32/defines.h"
 
 #include <stdint.h>
 
