@@ -111,7 +111,7 @@ xpm run test-all -C ~/Work/architecture-aarch32-xpack.git
   only `package.json`, `README.md`, `LICENSE`, `CHANGELOG.md`,
   the sources and CMake/meson files;
   possibly adjust `.npmignore`
-- `npm version patch`, `npm version minor`, `npm version major`
+- `npm version 4.0.0`
 - push the `xpack-development` branch to GitHub
 - the `postversion` npm script should also update tags via `git push origin --tags`
 - wait for the CI job to complete
