@@ -86,7 +86,7 @@ related to the new version.
 
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
-- add a new entry like _* v4.0.0_
+- add a new entry like _\* v4.0.0_
 - commit with a message like _prepare v4.0.0_
 
 ### Push changes
@@ -133,7 +133,7 @@ For this:
 
 ### Publish
 
-- `npm publish --tag next` (use `npm publish --access public` when
+- `npm publish --tag test` (use `npm publish --access public` when
   publishing for the first time)
 
 The version is visible at:
