@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
-# DO NOT EDIT!
-# Automatically generated from xcdl-package.jsonc.
+# DO NOT EDIT! Automatically generated from template file:
+# xcdl-package.jsonc
 #
 # This file is part of the µOS++ project (https://micro-os-plus.github.io/).
 # Copyright (c) 2022-2026 Liviu Ionescu. All rights reserved.
@@ -53,6 +53,7 @@ _local_include_directories += [
 _local_sources += [
   'src/_init_fini.c',
   'src/semihosting.cpp',
+  'src/show-cpuid.cpp',
 ]
 
 # https://mesonbuild.com/Reference-manual_functions.html#declare_dependency
@@ -77,6 +78,9 @@ foreach name : _local_sources + _local_compile_definitions + _local_compile_args
   message('+ ' + name)
 endforeach
 message('> micro_os_plus_architectures_aarch32_dependency')
+
+# -----------------------------------------------------------------------------
+# Alias.
 
 micro_os_plus_architecture_dependency = declare_dependency(
   include_directories: include_directories(_local_include_directories),
