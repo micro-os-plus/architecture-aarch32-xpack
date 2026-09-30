@@ -221,6 +221,6 @@ namespace micro_os_plus::architecture
 
 // ----------------------------------------------------------------------------
 
-#endif // MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INSTRUCTIONS_INLINES_H_
+#endif // MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INLINES_INSTRUCTIONS_INLINES_H_
 
 // ----------------------------------------------------------------------------
