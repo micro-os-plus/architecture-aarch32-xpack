@@ -47,6 +47,18 @@ extern "C"
   static void
   aarch32_architecture_wfi (void);
 
+  /**
+   * `dsb sy` instruction (Data Synchronization Barrier, full system).
+   */
+  static void
+  aarch32_architecture_dsb (void);
+
+  /**
+   * `isb` instruction (Instruction Synchronization Barrier).
+   */
+  static void
+  aarch32_architecture_isb (void);
+
   // --------------------------------------------------------------------------
   // Portable architecture assembly instructions in C.
 
@@ -67,6 +79,34 @@ extern "C"
    */
   static void
   micro_os_plus_architecture_wfi (void);
+
+  /**
+   * @brief Data synchronisation barrier.
+   *
+   * @details
+   * Ensures that all explicit memory accesses, and all system register
+   * writes, issued before this call complete before any instruction
+   * after it executes. It also acts as a compiler memory barrier.
+   *
+   * On AArch32, it is implemented with the `dsb sy` instruction.
+   */
+  static void
+  micro_os_plus_architecture_data_barrier (void);
+
+  /**
+   * @brief Instruction synchronisation barrier.
+   *
+   * @details
+   * Ensures that the instructions after this call are fetched and
+   * executed only after the effects of the preceding context-changing
+   * operations (such as system register writes, or code written to
+   * memory) are visible. Usually called right after
+   * `micro_os_plus_architecture_data_barrier()`.
+   *
+   * On AArch32, it is implemented with the `isb` instruction.
+   */
+  static void
+  micro_os_plus_architecture_instruction_barrier (void);
 
   // --------------------------------------------------------------------------
 
@@ -101,6 +141,18 @@ namespace aarch32::architecture
   void
   wfi (void);
 
+  /**
+   * The assembler `dsb sy` (Data Synchronization Barrier) instruction.
+   */
+  void
+  dsb (void);
+
+  /**
+   * The assembler `isb` (Instruction Synchronization Barrier) instruction.
+   */
+  void
+  isb (void);
+
   // --------------------------------------------------------------------------
 } // namespace aarch32::architecture
 
@@ -126,6 +178,27 @@ namespace micro_os_plus::architecture
    */
   void
   wfi (void);
+
+  /**
+   * @brief Data synchronisation barrier.
+   *
+   * @details
+   * The C++ equivalent of `micro_os_plus_architecture_data_barrier()`;
+   * on AArch32, it is implemented with the `dsb sy` instruction.
+   */
+  void
+  data_barrier (void);
+
+  /**
+   * @brief Instruction synchronisation barrier.
+   *
+   * @details
+   * The C++ equivalent of
+   * `micro_os_plus_architecture_instruction_barrier()`; on AArch32,
+   * it is implemented with the `isb` instruction.
+   */
+  void
+  instruction_barrier (void);
 
   // --------------------------------------------------------------------------
 } // namespace micro_os_plus::architecture
