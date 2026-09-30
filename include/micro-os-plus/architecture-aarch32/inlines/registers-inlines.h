@@ -26,10 +26,10 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline __attribute__ ((always_inline)) aarch32_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE aarch32_architecture_register_t
   aarch32_architecture_get_sp (void)
   {
-    uint32_t result;
+    aarch32_architecture_register_t result;
 
     __asm__ volatile (
 
