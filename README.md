@@ -6,23 +6,21 @@
 
 # A source code library with the µOS++ Arm AArch32 architecture definitions
 
-This project provides the **architecture-aarch32** source library as an xPack
+This project provides the **architecture-aarch32** source library as an `xpm`
 dependency and includes architecture definitions for AArch32 embedded projects.
 
 The project is hosted on GitHub as
 [micro-os-plus/architecture-aarch32-xpack](https://github.com/micro-os-plus/architecture-aarch32-xpack).
 
-## Maintainer info
-
 This page is addressed to developers who plan to include this source
 library into their own projects.
 
-For maintainer info, please see the
+For maintainer information, please see the
 [README-MAINTAINER](README-MAINTAINER.md) file.
 
 ## Install
 
-As a source library xPack, the easiest way to add it to a project is via
+As a source library xpm package, the easiest way to add it to a project is via
 **xpm**, but it can also be used as any Git project, for example as a submodule.
 
 ### Prerequisites
@@ -85,7 +83,7 @@ into `xpack`.
 
 ### Overview
 
-This source xPack provides general AArch32 definitions.
+This source xpm package provides general AArch32 definitions.
 
 ### Status
 
@@ -94,14 +92,14 @@ but minimalistic, for running semihosted tests.
 
 ### Build & integration info
 
-The project is written in C++ and assembly and it is expected
-to be used in C and C++ projects.
+The project is written in C++, C, and inline assembly, and it is
+expected to be used in C and C++ projects.
 
-The source code was compiled with arm-none-eabi-gcc 11,
+The source code is tested with arm-none-eabi-gcc 11 to 15,
 and should be warning free.
 
-To ease the integration of this package into user projects, there
-are already made CMake and meson configuration files (see below).
+To ease the integration of this package into user projects,
+ready-made CMake and meson configuration files are provided (see below).
 
 For other build systems, consider the following details:
 
@@ -121,11 +119,21 @@ The header files to be included in user projects are:
 
 The source files to be added to user projects are:
 
-- none
+- `src/show-cpuid.cpp` - empty, this architecture has no CPUID
+- `src/semihosting.cpp` - the semihosting call for this platform
+- `src/_init_fini.c` - empty definitions required by newlib
 
 #### Preprocessor definitions
 
-- none
+The configuration definitions are expected either in the specific header file
+`micro-os-plus/architecture-defines.h` or in the common project configuration
+file `micro-os-plus/project-config.h`:
+
+- `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` - enable the inclusion of the
+  architecture files in the build; without it, the headers and the source
+  files are empty
+- `MICRO_OS_PLUS_SEMIHOSTING_ENABLED` - enable the semihosting call in
+  `src/semihosting.cpp`; requires the `semihosting` package
 
 #### Compiler options
 
@@ -150,7 +158,7 @@ Architecture specific:
 
 #### Dependencies
 
-- none
+- `@micro-os-plus/semihosting` - optional, required only when semihosting is used
 
 #### CMake
 
@@ -158,7 +166,7 @@ To integrate the architecture-aarch32 source library into a CMake application,
 add this folder to the build:
 
 ```cmake
-add_subdirectory("xpacks/@micro-os-plus/architecture-aarch32")`
+add_subdirectory("xpacks/@micro-os-plus/architecture-aarch32")
 ```
 
 The result is an interface library that can be added as an application
@@ -167,9 +175,12 @@ dependency with:
 ```cmake
 target_link_libraries(your-target PRIVATE
 
-  micro-os-plus::architecture-aarch32
+  micro-os-plus::architectures-aarch32
 )
 ```
+
+The generic alias `micro-os-plus::architecture` refers to the same
+library, and can be used when the application is architecture agnostic.
 
 #### meson
 
@@ -185,17 +196,37 @@ to an application with:
 
 ```meson
 exe = executable(
-  your-target,
+  'your-target',
+  c_args: micro_os_plus_architectures_aarch32_dependency_compile_c_args,
+  cpp_args: micro_os_plus_architectures_aarch32_dependency_compile_cpp_args,
   link_with: [
     # Nothing, not static.
   ],
   dependencies: [
-    micro_os_plus_architecture_aarch32_dependency,
+    micro_os_plus_architectures_aarch32_dependency,
   ]
 )
 ```
 
+The generic `micro_os_plus_architecture_dependency` object (with the
+corresponding `_compile_c_args` and `_compile_cpp_args` variables) refers
+to the same sources, and can be used when the application is
+architecture agnostic.
+
+#### xCDL
+
+The package metadata for the xCDL build configuration tools is
+available in `xcdl-package.jsonc`.
+
+#### Linker scripts
+
+The `linker-scripts` folder includes `sections-ram.ld`, a generic
+linker script for configurations running entirely from RAM; it may be
+redefined at device level.
+
 ### Examples
+
+With `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` defined:
 
 ```c++
 #include "micro-os-plus/architecture.h"
@@ -213,7 +244,9 @@ reg = architecture::registers::sp();
 
 ### Tests
 
-TBD
+There are no tests in this package yet; the functionality is exercised
+by the tests of the packages that depend on it, like
+[micro-test-plus](https://github.com/micro-os-plus/micro-test-plus-xpack).
 
 ## Change log - incompatible changes
 
@@ -225,6 +258,16 @@ According to [semver](https://semver.org) rules:
 The incompatible changes, in reverse chronological order,
 are:
 
+- v4.x:
+  - the CMake alias was renamed `micro-os-plus::architectures-aarch32`
+    (the generic `micro-os-plus::architecture` was preserved)
+  - the specific meson dependency is
+    `micro_os_plus_architectures_aarch32_dependency`
+  - `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` must be defined to enable this library
+  - `src/semihosting.cpp` and `src/show-cpuid.cpp` were added
+    and must be compiled
+  - the inline headers were moved to the `inlines` folder
+  - `aarch32::architecture::registers::msp()` was renamed `sp()`
 - v3.x: rework as aarch32
 
 (previous versions were part of `architecture-cortexa`)
