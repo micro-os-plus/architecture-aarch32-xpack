@@ -13,15 +13,23 @@
 
 #include "micro-os-plus/architecture.h"
 
+#if defined(MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED)
+
+// The whole implementation depends on this header: it must be included
+// before testing MICRO_OS_PLUS_SEMIHOSTING_ENABLED, which may be defined
+// in `micro-os-plus/semihosting-defines.h`, and its declaration gives the
+// definition below C linkage.
 #if __has_include("micro-os-plus/semihosting.h")
 #include "micro-os-plus/semihosting.h"
-#endif // __has_include("micro-os-plus/semihosting.h")
 
 // ----------------------------------------------------------------------------
 
-#if defined(MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED) \
-    && defined(MICRO_OS_PLUS_SEMIHOSTING_ENABLED)
+#if defined(MICRO_OS_PLUS_SEMIHOSTING_ENABLED)
 
+// ----------------------------------------------------------------------------
+
+namespace
+{
 // ---------------------------------------------------------------------------
 
 // SWI numbers and reason codes for RDI (Angel) monitors.
@@ -35,6 +43,7 @@
       = 0x123456;
 #endif // defined(__thumb__)
 } // namespace
+
 micro_os_plus_semihosting_response_t
 micro_os_plus_semihosting_call_host (
     int reason, micro_os_plus_semihosting_param_block_t* arg)
@@ -68,6 +77,14 @@ micro_os_plus_semihosting_call_host (
 
 // ----------------------------------------------------------------------------
 
-#endif // defined(MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED) && defined(MICRO_OS_PLUS_SEMIHOSTING_ENABLED)
+#endif // defined(MICRO_OS_PLUS_SEMIHOSTING_ENABLED)
+
+// ----------------------------------------------------------------------------
+
+#endif // __has_include("micro-os-plus/semihosting.h")
+
+// ----------------------------------------------------------------------------
+
+#endif // defined(MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED)
 
 // ----------------------------------------------------------------------------
