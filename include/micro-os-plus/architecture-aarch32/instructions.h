@@ -30,33 +30,28 @@ extern "C"
   // Architecture assembly instructions in C.
 
   /**
-   * `nop` instruction.
    */
-  static void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   aarch32_architecture_nop (void);
 
   /**
-   * `bkpt` instruction.
    */
-  static void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   aarch32_architecture_bkpt (void);
 
   /**
-   * `wfi` instruction.
    */
-  static void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   aarch32_architecture_wfi (void);
 
   /**
-   * `dsb sy` instruction (Data Synchronization Barrier, full system).
    */
-  static void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   aarch32_architecture_dsb (void);
 
   /**
-   * `isb` instruction (Instruction Synchronization Barrier).
    */
-  static void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   aarch32_architecture_isb (void);
 
   // --------------------------------------------------------------------------
@@ -65,19 +60,18 @@ extern "C"
   /**
    * `nop` instruction.
    */
-  static void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   micro_os_plus_architecture_nop (void);
 
   /**
    * `break` instruction.
    */
-  static void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   micro_os_plus_architecture_brk (void);
 
   /**
-   * `wfi` instruction.
    */
-  static void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   micro_os_plus_architecture_wfi (void);
 
   /**
@@ -90,7 +84,7 @@ extern "C"
    *
    * On AArch32, it is implemented with the `dsb sy` instruction.
    */
-  static void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   micro_os_plus_architecture_data_barrier (void);
 
   /**
@@ -105,7 +99,7 @@ extern "C"
    *
    * On AArch32, it is implemented with the `isb` instruction.
    */
-  static void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   micro_os_plus_architecture_instruction_barrier (void);
 
   // --------------------------------------------------------------------------
@@ -126,32 +120,32 @@ namespace aarch32::architecture
   /**
    * The assembler `nop` instruction.
    */
-  void
-  nop (void);
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  nop (void) noexcept;
 
   /**
    * The assembler `bkpt` instruction.
    */
-  void
-  bkpt (void);
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  bkpt (void) noexcept;
 
   /**
    * The assembler `wfi` instruction.
    */
-  void
-  wfi (void);
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  wfi (void) noexcept;
 
   /**
    * The assembler `dsb sy` (Data Synchronization Barrier) instruction.
    */
-  void
-  dsb (void);
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  dsb (void) noexcept;
 
   /**
    * The assembler `isb` (Instruction Synchronization Barrier) instruction.
    */
-  void
-  isb (void);
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  isb (void) noexcept;
 
   // --------------------------------------------------------------------------
 } // namespace aarch32::architecture
@@ -164,20 +158,20 @@ namespace micro_os_plus::architecture
   /**
    * The assembler `nop` instruction.
    */
-  void
-  nop (void);
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  nop (void) noexcept;
 
   /**
    * The assembler `bkpt` instruction.
    */
-  void
-  brk (void);
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  brk (void) noexcept;
 
   /**
    * The assembler `wfi` instruction.
    */
-  void
-  wfi (void);
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  wfi (void) noexcept;
 
   /**
    * @brief Data synchronisation barrier.
@@ -186,8 +180,8 @@ namespace micro_os_plus::architecture
    * The C++ equivalent of `micro_os_plus_architecture_data_barrier()`;
    * on AArch32, it is implemented with the `dsb sy` instruction.
    */
-  void
-  data_barrier (void);
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  data_barrier (void) noexcept;
 
   /**
    * @brief Instruction synchronisation barrier.
@@ -197,8 +191,8 @@ namespace micro_os_plus::architecture
    * `micro_os_plus_architecture_instruction_barrier()`; on AArch32,
    * it is implemented with the `isb` instruction.
    */
-  void
-  instruction_barrier (void);
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  instruction_barrier (void) noexcept;
 
   // --------------------------------------------------------------------------
 } // namespace micro_os_plus::architecture

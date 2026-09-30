@@ -43,9 +43,9 @@ extern "C"
     return result;
   }
 
-  static inline
-      __attribute__ ((always_inline)) micro_os_plus_architecture_register_t
-      micro_os_plus_architecture_get_sp (void)
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+  micro_os_plus_architecture_register_t
+  micro_os_plus_architecture_get_sp (void)
   {
     return aarch32_architecture_get_sp ();
   }
@@ -64,8 +64,8 @@ namespace aarch32::architecture::registers
 {
   // --------------------------------------------------------------------------
 
-  inline __attribute__ ((always_inline)) register_t
-  sp (void)
+  [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE register_t
+  sp (void) noexcept
   {
     return aarch32_architecture_get_sp ();
   }
@@ -77,8 +77,8 @@ namespace micro_os_plus::architecture::registers
 {
   // --------------------------------------------------------------------------
 
-  inline __attribute__ ((always_inline)) register_t
-  sp (void)
+  [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE register_t
+  sp (void) noexcept
   {
     return micro_os_plus_architecture_get_sp ();
   }

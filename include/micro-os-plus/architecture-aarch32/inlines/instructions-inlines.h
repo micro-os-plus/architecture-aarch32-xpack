@@ -26,7 +26,7 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline __attribute__ ((always_inline)) void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   aarch32_architecture_nop (void)
   {
     __asm__ volatile (
@@ -39,7 +39,7 @@ extern "C"
     );
   }
 
-  static inline __attribute__ ((always_inline)) void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   aarch32_architecture_bkpt (void)
   {
     __asm__ volatile (
@@ -52,7 +52,7 @@ extern "C"
     );
   }
 
-  static inline __attribute__ ((always_inline)) void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   aarch32_architecture_wfi (void)
   {
     __asm__ volatile (
@@ -65,7 +65,7 @@ extern "C"
     );
   }
 
-  static inline __attribute__ ((always_inline)) void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   aarch32_architecture_dsb (void)
   {
     __asm__ volatile (
@@ -78,7 +78,7 @@ extern "C"
     );
   }
 
-  static inline __attribute__ ((always_inline)) void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   aarch32_architecture_isb (void)
   {
     __asm__ volatile (
@@ -91,7 +91,7 @@ extern "C"
     );
   }
 
-  static inline __attribute__ ((always_inline)) void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   micro_os_plus_architecture_nop (void)
   {
     aarch32_architecture_nop ();
@@ -100,7 +100,7 @@ extern "C"
   /**
    * `break` instruction.
    */
-  static inline __attribute__ ((always_inline)) void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   micro_os_plus_architecture_brk (void)
   {
     aarch32_architecture_bkpt ();
@@ -109,7 +109,7 @@ extern "C"
   /**
    * `wfi` instruction.
    */
-  static inline __attribute__ ((always_inline)) void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   micro_os_plus_architecture_wfi (void)
   {
     aarch32_architecture_wfi ();
@@ -118,7 +118,7 @@ extern "C"
   /**
    * Data synchronisation barrier (`dsb sy`).
    */
-  static inline __attribute__ ((always_inline)) void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   micro_os_plus_architecture_data_barrier (void)
   {
     aarch32_architecture_dsb ();
@@ -127,7 +127,7 @@ extern "C"
   /**
    * Instruction synchronisation barrier (`isb`).
    */
-  static inline __attribute__ ((always_inline)) void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   micro_os_plus_architecture_instruction_barrier (void)
   {
     aarch32_architecture_isb ();
@@ -147,32 +147,32 @@ namespace aarch32::architecture
 {
   // --------------------------------------------------------------------------
 
-  inline __attribute__ ((always_inline)) void
-  nop (void)
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  nop (void) noexcept
   {
     aarch32_architecture_nop ();
   }
 
-  inline __attribute__ ((always_inline)) void
-  bkpt (void)
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  bkpt (void) noexcept
   {
     aarch32_architecture_bkpt ();
   }
 
-  inline __attribute__ ((always_inline)) void
-  wfi (void)
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  wfi (void) noexcept
   {
     aarch32_architecture_wfi ();
   }
 
-  inline __attribute__ ((always_inline)) void
-  dsb (void)
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  dsb (void) noexcept
   {
     aarch32_architecture_dsb ();
   }
 
-  inline __attribute__ ((always_inline)) void
-  isb (void)
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  isb (void) noexcept
   {
     aarch32_architecture_isb ();
   }
@@ -184,32 +184,32 @@ namespace micro_os_plus::architecture
 {
   // --------------------------------------------------------------------------
 
-  inline __attribute__ ((always_inline)) void
-  nop (void)
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  nop (void) noexcept
   {
     aarch32::architecture::nop ();
   }
 
-  inline __attribute__ ((always_inline)) void
-  brk (void)
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  brk (void) noexcept
   {
     aarch32::architecture::bkpt ();
   }
 
-  inline __attribute__ ((always_inline)) void
-  wfi (void)
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  wfi (void) noexcept
   {
     aarch32::architecture::wfi ();
   }
 
-  inline __attribute__ ((always_inline)) void
-  data_barrier (void)
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  data_barrier (void) noexcept
   {
     aarch32::architecture::dsb ();
   }
 
-  inline __attribute__ ((always_inline)) void
-  instruction_barrier (void)
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  instruction_barrier (void) noexcept
   {
     aarch32::architecture::isb ();
   }

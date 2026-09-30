@@ -39,7 +39,7 @@ extern "C"
    *
    * @return The value of the Stack Pointer.
    */
-  static aarch32_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE aarch32_architecture_register_t
   aarch32_architecture_get_sp (void);
 
   // TODO: add setter.
@@ -50,7 +50,7 @@ extern "C"
   /**
    * Stack Pointer getter.
    */
-  static micro_os_plus_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
   micro_os_plus_architecture_get_sp (void);
 
   // TODO: add setter.
@@ -79,8 +79,8 @@ namespace aarch32::architecture::registers
    *
    * @return The value of the Stack Pointer.
    */
-  register_t
-  sp (void);
+  [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE register_t
+  sp (void) noexcept;
 
   // TODO: add setter.
 
@@ -101,8 +101,8 @@ namespace micro_os_plus::architecture::registers
    *
    * @return The value of the Stack Pointer.
    */
-  register_t
-  sp (void);
+  [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE register_t
+  sp (void) noexcept;
 
   // TODO: add setter.
 
