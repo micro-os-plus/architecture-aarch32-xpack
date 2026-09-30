@@ -12,7 +12,10 @@
 // ----------------------------------------------------------------------------
 
 #include "micro-os-plus/architecture.h"
+
+#if __has_include("micro-os-plus/semihosting.h")
 #include "micro-os-plus/semihosting.h"
+#endif // __has_include("micro-os-plus/semihosting.h")
 
 // ----------------------------------------------------------------------------
 
