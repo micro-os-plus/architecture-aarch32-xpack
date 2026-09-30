@@ -11,6 +11,19 @@
 
 // ----------------------------------------------------------------------------
 
+/**
+ * @file
+ * @brief AArch32 implementation of the semihosting call.
+ *
+ * @details
+ * Implements `micro_os_plus_semihosting_call_host()`, declared in the
+ * `semihosting` package, using the `svc` instruction, as defined by the
+ * Arm semihosting specification for A-profile and R-profile cores.
+ *
+ * Nothing is compiled unless the architecture is enabled, the
+ * `semihosting` package is available, and semihosting is enabled.
+ */
+
 #include "micro-os-plus/architecture.h"
 
 #if defined(MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED)
@@ -30,11 +43,18 @@
 
 namespace
 {
-// ---------------------------------------------------------------------------
-
-// SWI numbers and reason codes for RDI (Angel) monitors.
-#define AngelSWIInsn "swi"
-// The order is important, since Cortex-M defines both.
+  /**
+   * @brief Semihosting trap number, used as the `svc` immediate.
+   *
+   * @details
+   * `0xAB` in Thumb state and `0x123456` in Arm state, as defined by the
+   * Arm semihosting specification for A-profile and R-profile cores
+   * (historically the Angel debug monitor SWI numbers).
+   *
+   * The 32-bit Arm target is already validated by
+   * `micro-os-plus/architecture.h`, so only the instruction set state
+   * needs to be tested here.
+   */
 #if defined(__thumb__)
   constexpr micro_os_plus_architecture_register_t semihosting_svc_number
       = 0xAB;
@@ -44,6 +64,24 @@ namespace
 #endif // defined(__thumb__)
 } // namespace
 
+/**
+ * @details
+ * Traps to the debugger, which performs the operation identified by
+ * `reason`, using the parameters in the block pointed to by `arg`, and
+ * returns its result.
+ *
+ * The call is synchronous. If the debugger or emulator (such as QEMU)
+ * does not intercept the `svc` instruction, it raises a Supervisor Call
+ * exception, handled by the application SVC handler, which normally does
+ * not expect it; therefore semihosting must be enabled only when running
+ * under a debugger or an emulator with semihosting support.
+ *
+ * @param reason The semihosting operation number, passed in `r0`.
+ * @param arg Pointer to the parameter block (or, for some operations, a
+ * single value), passed in `r1`.
+ * @return The operation result, returned in `r0`; its meaning depends on
+ * the operation, and many operations return -1 on error.
+ */
 micro_os_plus_semihosting_response_t
 micro_os_plus_semihosting_call_host (
     int reason, micro_os_plus_semihosting_param_block_t* arg)

@@ -9,6 +9,18 @@
  * obtained from https://opensource.org/licenses/mit.
  */
 
+// ----------------------------------------------------------------------------
+
+/**
+ * @file
+ * @brief AArch32 architecture type definitions.
+ *
+ * @details
+ * Defines the register types, both with architecture specific names and
+ * with the portable names common to all µOS++ architectures, in C and in
+ * C++.
+ */
+
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_AARCH32_TYPES_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_AARCH32_TYPES_H_
 
@@ -21,11 +33,40 @@ extern "C"
 {
 #endif // defined(__cplusplus)
 
+  /**
+   * @brief Unsigned type of a general purpose register.
+   *
+   * @details
+   * All AArch32 general purpose registers are 32-bit wide.
+   */
   typedef uint32_t aarch32_architecture_register_t;
+
+  /**
+   * @brief Signed type of a general purpose register.
+   *
+   * @details
+   * Used for values returned in registers that may be negative, such as
+   * semihosting results.
+   */
   typedef int32_t aarch32_architecture_signed_register_t;
 
+  /**
+   * @brief Portable unsigned register type.
+   *
+   * @details
+   * Common to all µOS++ architectures; on AArch32 it is an alias of
+   * `aarch32_architecture_register_t`.
+   */
   typedef aarch32_architecture_register_t
       micro_os_plus_architecture_register_t;
+
+  /**
+   * @brief Portable signed register type.
+   *
+   * @details
+   * Common to all µOS++ architectures; on AArch32 it is an alias of
+   * `aarch32_architecture_signed_register_t`.
+   */
   typedef aarch32_architecture_signed_register_t
       micro_os_plus_architecture_signed_register_t;
 
@@ -43,7 +84,20 @@ namespace aarch32::architecture
 {
   // --------------------------------------------------------------------------
 
+  /**
+   * @brief Unsigned type of a general purpose register.
+   *
+   * @details
+   * C++ alias of `aarch32_architecture_register_t`.
+   */
   using register_t = aarch32_architecture_register_t;
+
+  /**
+   * @brief Signed type of a general purpose register.
+   *
+   * @details
+   * C++ alias of `aarch32_architecture_signed_register_t`.
+   */
   using signed_register_t = aarch32_architecture_signed_register_t;
 
   // --------------------------------------------------------------------------
@@ -53,7 +107,22 @@ namespace micro_os_plus::architecture
 {
   // --------------------------------------------------------------------------
 
+  /**
+   * @brief Portable unsigned register type.
+   *
+   * @details
+   * C++ alias of `micro_os_plus_architecture_register_t`, common to all
+   * µOS++ architectures.
+   */
   using register_t = aarch32_architecture_register_t;
+
+  /**
+   * @brief Portable signed register type.
+   *
+   * @details
+   * C++ alias of `micro_os_plus_architecture_signed_register_t`, common
+   * to all µOS++ architectures.
+   */
   using signed_register_t = aarch32_architecture_signed_register_t;
 
   // --------------------------------------------------------------------------

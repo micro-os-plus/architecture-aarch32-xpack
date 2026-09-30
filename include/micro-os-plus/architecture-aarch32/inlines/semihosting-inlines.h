@@ -9,15 +9,31 @@
  * obtained from https://opensource.org/licenses/mit.
  */
 
+// ----------------------------------------------------------------------------
+
+/**
+ * @file
+ * @brief AArch32 type definitions used by the semihosting package.
+ *
+ * @details
+ * The `semihosting` package uses these architecture specific types in
+ * its declarations; the call itself,
+ * `micro_os_plus_semihosting_call_host()`, is implemented in
+ * `src/semihosting.cpp`.
+ */
+
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INLINES_SEMIHOSTING_INLINES_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INLINES_SEMIHOSTING_INLINES_H_
 
 // ----------------------------------------------------------------------------
 
+#include "micro-os-plus/architecture-aarch32/types.h"
+
 #include <stdint.h>
 
 // ----------------------------------------------------------------------------
-// Inline implementations for the AArch32 semihosting call.
+// AArch32 type definitions used by the semihosting call; the call itself
+// is implemented in `src/semihosting.cpp`.
 
 #if defined(__cplusplus)
 extern "C"
@@ -26,15 +42,32 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  // Type of each entry in structures.
+  /**
+   * @brief Type of each field in the semihosting structures.
+   *
+   * @details
+   * Semihosting structures, such as the heap information block, have
+   * fields of the register size.
+   */
   typedef micro_os_plus_architecture_register_t
       micro_os_plus_semihosting_register_t;
 
-  // Type of each entry in a parameter block.
+  /**
+   * @brief Type of each entry in a semihosting parameter block.
+   *
+   * @details
+   * The parameter block, passed by address in `r1`, is an array of
+   * register size words.
+   */
   typedef micro_os_plus_architecture_register_t
       micro_os_plus_semihosting_param_block_t;
 
-  // Type of result.
+  /**
+   * @brief Type of the value returned by a semihosting call.
+   *
+   * @details
+   * Signed, since several operations return -1 to report errors.
+   */
   typedef micro_os_plus_architecture_signed_register_t
       micro_os_plus_semihosting_response_t;
 

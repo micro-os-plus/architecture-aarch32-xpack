@@ -9,12 +9,29 @@
  * obtained from https://opensource.org/licenses/mit.
  */
 
+// ----------------------------------------------------------------------------
+
+/**
+ * @file
+ * @brief Declarations of the AArch32 functions accessing CPU registers.
+ *
+ * @details
+ * As for the instructions, each register accessor is available as
+ * architecture specific and portable C functions, and in the
+ * `aarch32::architecture::registers` and
+ * `micro_os_plus::architecture::registers` C++ namespaces.
+ *
+ * All functions are always inlined; their definitions are in
+ * `inlines/registers-inlines.h`, included at the end of this file.
+ */
+
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_AARCH32_REGISTERS_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_AARCH32_REGISTERS_H_
 
 // ----------------------------------------------------------------------------
 
 #include "micro-os-plus/architecture-aarch32/defines.h"
+#include "micro-os-plus/architecture-aarch32/types.h"
 
 #include <stdint.h>
 
@@ -34,8 +51,8 @@ extern "C"
    *
    * @details
    * Reads the banked SP (R13) of the current processor mode.
-   * A-profile AArch32 cores have no separate Main/Process stack
-   * pointers, unlike M-profile cores.
+   * A-profile and R-profile AArch32 cores have no separate
+   * Main/Process stack pointers, unlike M-profile cores.
    *
    * @return The value of the Stack Pointer.
    */
@@ -48,9 +65,16 @@ extern "C"
   // Portable architecture assembly instructions in C.
 
   /**
-   * Stack Pointer getter.
+   * @brief Get the current Stack Pointer.
+   *
+   * @details
+   * Portable wrapper, available on all µOS++ architectures; on AArch32
+   * it reads the banked SP (R13) of the current processor mode.
+   *
+   * @return The value of the Stack Pointer.
    */
   MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+  micro_os_plus_architecture_register_t
   micro_os_plus_architecture_get_sp (void);
 
   // TODO: add setter.

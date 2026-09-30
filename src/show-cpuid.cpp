@@ -11,6 +11,15 @@
 
 // ----------------------------------------------------------------------------
 
+/**
+ * @file
+ * @brief AArch32 implementation of the CPU identification display.
+ *
+ * @details
+ * The function is called by the µOS++ startup code, when debug or trace
+ * output is enabled; on AArch32 it does nothing.
+ */
+
 #include "micro-os-plus/architecture.h"
 
 // ----------------------------------------------------------------------------
@@ -19,10 +28,10 @@
 
 // ----------------------------------------------------------------------------
 
-using namespace micro_os_plus;
-
-// ----------------------------------------------------------------------------
-
+/**
+ * @details
+ * Intentionally empty; on AArch32 no CPU identification is displayed.
+ */
 void
 micro_os_plus_architecture_show_cpuid (void)
 {
