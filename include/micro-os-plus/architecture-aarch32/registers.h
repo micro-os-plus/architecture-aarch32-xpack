@@ -9,8 +9,8 @@
  * obtained from https://opensource.org/licenses/mit.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INSTRUCTIONS_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INSTRUCTIONS_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_AARCH32_REGISTERS_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_AARCH32_REGISTERS_H_
 
 // ----------------------------------------------------------------------------
 
@@ -30,10 +30,17 @@ extern "C"
   // Architecture registers getters and mutators in C.
 
   /**
-   * Main Stack Pointer getter.
+   * @brief Get the current Stack Pointer.
+   *
+   * @details
+   * Reads the banked SP (R13) of the current processor mode.
+   * A-profile AArch32 cores have no separate Main/Process stack
+   * pointers, unlike M-profile cores.
+   *
+   * @return The value of the Stack Pointer.
    */
   static aarch32_architecture_register_t
-  aarch32_architecture_get_msp (void);
+  aarch32_architecture_get_sp (void);
 
   // TODO: add setter.
 
@@ -64,10 +71,16 @@ namespace aarch32::architecture::registers
   // Architecture getters in C++.
 
   /**
-   * Main Stack Pointer getter.
+   * @brief Get the current Stack Pointer.
+   *
+   * @details
+   * C++ wrapper for `aarch32_architecture_get_sp()`; reads the
+   * banked SP (R13) of the current processor mode.
+   *
+   * @return The value of the Stack Pointer.
    */
   register_t
-  msp (void);
+  sp (void);
 
   // TODO: add setter.
 
@@ -80,7 +93,13 @@ namespace micro_os_plus::architecture::registers
   // Portable architecture assembly instructions in C++.
 
   /**
-   * Main Stack Pointer getter.
+   * @brief Get the current Stack Pointer.
+   *
+   * @details
+   * Portable wrapper for `micro_os_plus_architecture_get_sp()`,
+   * available on all µOS++ architectures.
+   *
+   * @return The value of the Stack Pointer.
    */
   register_t
   sp (void);
@@ -99,6 +118,6 @@ namespace micro_os_plus::architecture::registers
 
 // ----------------------------------------------------------------------------
 
-#endif // MICRO_OS_PLUS_ARCHITECTURE_AARCH32_INSTRUCTIONS_H_
+#endif // MICRO_OS_PLUS_ARCHITECTURE_AARCH32_REGISTERS_H_
 
 // ----------------------------------------------------------------------------
