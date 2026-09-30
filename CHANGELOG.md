@@ -6,9 +6,21 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-aarch32-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-09-30
+
+* v4.2.0
+* 9a954f9 README update
+* 5e698d9 fix guard consistency
+* 68d37ff semihosting.cpp: __has_include("micro-os-plus/semihosting.h")
+* 4b3a84d fix the sp getter/setter
+* 72e51b8 cosmetics
+* ba9ea70 more MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED
+* 317e1c2 add data_barier & instruction_barrier
+
 ## 2026-09-09
 
-* v4.1.0
+* 360966a 4.1.0
+* 9d7ee15 prepare v4.1.0
 * 999e336 re-format
 
 ## 2026-09-08
