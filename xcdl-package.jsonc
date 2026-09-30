@@ -8,8 +8,8 @@
     {
       "id": "micro-os-plus.architectures.aarch32",
       "alias": "micro-os-plus.architecture",
-      "display": "AArch32 architecture",
-      "description": "The AArch32 architecture definitions",
+      "display": "AArch32 (Cortex-A/R) architecture",
+      "description": "The Arm AArch32 architecture definitions, for 32-bit Cortex-A and Cortex-R devices",
       "publicIncludeFolders": [
         "include"
       ],

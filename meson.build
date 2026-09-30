@@ -26,7 +26,7 @@
 
 # -----------------------------------------------------------------------------
 
-# A source code library with the µOS++ Arm AArch32 architecture.
+# A source code library with the µOS++ architecture definitions for Arm AArch32 (32-bit Cortex-A and Cortex-R).
 message('Processing xpm package @micro-os-plus/architecture-aarch32...')
 
 # -----------------------------------------------------------------------------

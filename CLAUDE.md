@@ -8,11 +8,20 @@ code in this repository.
 ## Project Overview
 
 `@micro-os-plus/architecture-aarch32` is a small µOS++ source library (an xpm
-package, also usable as a Git submodule) that provides the Arm AArch32
-(A/R-profile, 32-bit) architecture layer: register types, wrappers for a few
-CPU instructions, a Stack Pointer getter, and the Angel semihosting call. It is
-minimalistic and exists mainly to run semihosted tests (for example under
-QEMU). It does not use CMSIS Core.
+package, also usable as a Git submodule) that provides the architecture layer
+for Arm **Cortex-A and Cortex-R** devices in AArch32 (32-bit) state: register
+types, wrappers for a few CPU instructions, a Stack Pointer getter, and the
+Angel semihosting call.
+It is minimalistic and exists mainly to run semihosted tests (for example
+under QEMU). It does not use CMSIS Core.
+
+Only the A and R profiles are supported. Cortex-M devices are supported by
+the separate `architecture-cortexm` package. `architecture.h` accepts only
+`__arm__` targets with `__ARM_ARCH_PROFILE` equal to `'A'` or `'R'`, and
+issues an `#error` for M-profile, AArch64, and classic (profile-less) cores.
+Any new instruction wrapper must exist on both Armv7-A/Armv8-A (AArch32) and
+Armv7-R/Armv8-R. Do not add M-profile code paths (for example `bkpt 0xAB`
+semihosting, or MSP/PSP handling) here.
 
 There is no library to build here; consumers compile the sources as part of
 their own application.
@@ -29,8 +38,9 @@ their own application.
 - `include/micro-os-plus/architecture.h`: the single public entry header.
   It includes `micro-os-plus/project-config.h` and
   `micro-os-plus/architecture-defines.h` if present, and exposes the rest only
-  when `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` is defined. It requires
-  C++20 when compiled as C++.
+  when `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` is defined; in that case
+  it also rejects targets other than 32-bit Cortex-A and Cortex-R. It
+  requires C++20 when compiled as C++.
 - `include/micro-os-plus/architecture-aarch32/`:
   - `defines.h`: architecture macros (also safe for assembly sources).
   - `types.h`: `aarch32_architecture_register_t` (`uint32_t`), the signed
@@ -44,7 +54,10 @@ their own application.
 - `src/`:
   - `semihosting.cpp`: `micro_os_plus_semihosting_call_host()` using `swi`
     (`0xAB` in Thumb, `0x123456` in Arm state); compiled only when
-    `MICRO_OS_PLUS_SEMIHOSTING_ENABLED` is also defined.
+    `micro-os-plus/semihosting.h` is available and
+    `MICRO_OS_PLUS_SEMIHOSTING_ENABLED` is also defined. The header must be
+    included before that macro is tested, since it may be defined in
+    `semihosting-defines.h`.
   - `show-cpuid.cpp`: intentionally empty (AArch32 has no CPUID here).
   - `_init_fini.c`: empty `_init()`/`_fini()` required by newlib.
 - `linker-scripts/sections-ram.ld`: generic RAM-only linker script, which
@@ -54,13 +67,18 @@ their own application.
 
 ## API conventions
 
-Every feature is exposed in four equivalent forms, which must be kept in sync
-when adding or changing functionality:
+Every application-facing feature (instructions, registers) is exposed in four
+equivalent forms, which must be kept in sync when adding or changing
+functionality:
 
 1. C, architecture specific: `aarch32_architecture_*()`.
 2. C, portable: `micro_os_plus_architecture_*()`.
 3. C++, architecture specific: `aarch32::architecture[::registers]`.
 4. C++, portable: `micro_os_plus::architecture[::registers]`.
+
+Internal functions used only by other µOS++ packages, such as
+`micro_os_plus_architecture_show_cpuid()` (called by the `startup` package),
+are exposed only as portable C functions and need no C++ variant.
 
 The C functions are declared `static` in the headers and defined in the
 matching `inlines/*-inlines.h` file. The portable names are part of the
@@ -118,7 +136,9 @@ and `tests/` has no `package.json`, so the `xpm run test*` commands listed in
 `.github/copilot-instructions.md` do not apply to this repository. The code
 is exercised by dependent packages, such as `micro-test-plus-xpack`. Changes
 should at least be checked to compile warning-free with `arm-none-eabi-gcc`
-(versions 11 to 15 are supported) for both Arm and Thumb states.
+(versions 11 to 15 are supported) for both a Cortex-A and a Cortex-R target
+(for example `-mcpu=cortex-a7` and `-mcpu=cortex-r5`), in both Arm and Thumb
+states.
 
 ## Releases
 

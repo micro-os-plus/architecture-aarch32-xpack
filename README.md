@@ -4,10 +4,16 @@
 [![license](https://img.shields.io/github/license/micro-os-plus/architecture-aarch32-xpack)](https://github.com/micro-os-plus/architecture-aarch32-xpack/blob/xpack/LICENSE)
 [![CI on Push](https://github.com/micro-os-plus/architecture-aarch32-xpack/actions/workflows/ci.yml/badge.svg)](https://github.com/micro-os-plus/architecture-aarch32-xpack/actions/workflows/ci.yml)
 
-# A source code library with the µOS++ Arm AArch32 architecture definitions
+# A source code library with the µOS++ architecture definitions for Arm AArch32 (32-bit Cortex-A and Cortex-R)
 
 This project provides the **architecture-aarch32** source library as an `xpm`
-dependency and includes architecture definitions for AArch32 embedded projects.
+dependency and includes architecture definitions for embedded projects
+running on Arm Cortex-A and Cortex-R devices in AArch32 (32-bit) state.
+
+Cortex-M devices are **not** supported by this package; they are supported
+by the separate
+[architecture-cortexm](https://github.com/micro-os-plus/architecture-cortexm-xpack)
+package.
 
 The project is hosted on GitHub as
 [micro-os-plus/architecture-aarch32-xpack](https://github.com/micro-os-plus/architecture-aarch32-xpack).
@@ -83,7 +89,30 @@ into `xpack`.
 
 ### Overview
 
-This source xpm package provides general AArch32 definitions.
+This source xpm package provides general AArch32 definitions for
+Cortex-A and Cortex-R devices.
+
+### Supported devices
+
+Only Arm Cortex-A (A-profile) and Cortex-R (R-profile) devices running in
+AArch32 (32-bit) state, in either the Arm or the Thumb instruction set, are
+supported. Both profiles use the same semihosting trap (`svc 0x123456` in
+Arm state, `svc 0xAB` in Thumb state) and the same instructions wrapped by
+this package.
+
+Cortex-M (M-profile) devices differ in their exception model, stack pointers,
+and semihosting trap instruction, and are supported by the separate
+[architecture-cortexm](https://github.com/micro-os-plus/architecture-cortexm-xpack)
+package.
+
+When `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` is defined, the
+`micro-os-plus/architecture.h` header checks the ACLE `__ARM_ARCH_PROFILE`
+macro and stops the build with an `#error` for:
+
+- M-profile (Cortex-M) devices;
+- AArch64 (64-bit) targets;
+- classic Arm cores (for example ARM9 or ARM11), which have no
+  architecture profile.
 
 ### Status
 
@@ -95,8 +124,9 @@ but minimalistic, for running semihosted tests.
 The project is written in C++, C, and inline assembly, and it is
 expected to be used in C and C++ projects.
 
-The source code is tested with arm-none-eabi-gcc 11 to 15,
-and should be warning free.
+The source code is tested with arm-none-eabi-gcc 11 to 15, for Cortex-A
+and Cortex-R devices (for example `-mcpu=cortex-a7` or `-mcpu=cortex-r5`,
+with `-marm` or `-mthumb`), and should be warning free.
 
 To ease the integration of this package into user projects,
 ready-made CMake and meson configuration files are provided (see below).
@@ -131,7 +161,8 @@ file `micro-os-plus/project-config.h`:
 
 - `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` - enable the inclusion of the
   architecture files in the build; without it, the headers and the source
-  files are empty
+  files are empty; it must be defined only for Cortex-A and Cortex-R
+  devices
 - `MICRO_OS_PLUS_SEMIHOSTING_ENABLED` - enable the semihosting call in
   `src/semihosting.cpp`; requires the `semihosting` package
 

@@ -28,7 +28,8 @@
 cmake_minimum_required (VERSION 3.20)
 project (
   micro-os-plus-architecture-aarch32
-  DESCRIPTION "A source code library with the µOS++ Arm AArch32 architecture"
+  DESCRIPTION
+    "A source code library with the µOS++ architecture definitions for Arm AArch32 (32-bit Cortex-A and Cortex-R)"
   LANGUAGES C CXX ASM
 )
 
