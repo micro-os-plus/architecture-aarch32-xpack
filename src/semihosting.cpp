@@ -28,33 +28,38 @@
 #define AngelSWIInsn "swi"
 // The order is important, since Cortex-M defines both.
 #if defined(__thumb__)
-#define AngelSWI 0xAB
-#elif defined(__arm__)
-#define AngelSWI 0x123456
+  constexpr micro_os_plus_architecture_register_t semihosting_svc_number
+      = 0xAB;
 #else
-#error "Unsupported architecture."
-#endif
-
+  constexpr micro_os_plus_architecture_register_t semihosting_svc_number
+      = 0x123456;
+#endif // defined(__thumb__)
+} // namespace
 micro_os_plus_semihosting_response_t
 micro_os_plus_semihosting_call_host (
     int reason, micro_os_plus_semihosting_param_block_t* arg)
 {
-  micro_os_plus_semihosting_response_t value;
+  // The semihosting ABI passes the reason in r0 and the parameter block
+  // address in r1, and returns the result in r0. Binding the operands
+  // directly to these registers (GNU explicit register variables, still
+  // valid in C++17 and later) avoids the extra moves the compiler would
+  // otherwise generate. r1 is also declared as an in/out operand, so
+  // that the compiler conservatively does not assume it is preserved.
+  register micro_os_plus_semihosting_response_t value __asm__ ("r0") = reason;
+  register micro_os_plus_semihosting_param_block_t* param __asm__ ("r1") = arg;
+
   __asm__ volatile (
 
-      " mov r0, %[rsn] \n"
-      " mov r1, %[arg] \n"
-      " " AngelSWIInsn " %[swi] \n"
-      " mov %[val], r0"
+      " svc %[swi] \n"
 
-      : [val] "=r"(value) /* Outputs */
-      : [rsn] "r"(reason), [arg] "r"(arg), [swi] "i"(AngelSWI) /* Inputs */
-      : "r0", "r1", "r2", "r3", "ip", "lr", "memory", "cc"
-      // Clobbers r0 and r1, and lr if in supervisor mode
+      : [val] "+r"(value), [arg] "+r"(param) /* Outputs */
+      : [swi] "i"(semihosting_svc_number) /* Inputs */
+      : "r2", "r3", "ip", "lr", "memory", "cc" /* Clobbers */
   );
 
-  // Accordingly to page 13-77 of ARM DUI 0040D other registers
-  // can also be clobbered. Some memory positions may also be
+  // According to page 13-77 of ARM DUI 0040D, other registers
+  // can also be clobbered (lr in supervisor mode, since `svc`
+  // overwrites it). Some memory positions may also be
   // changed by a system call, so they should not be kept in
   // registers. Note: we are assuming the manual is right and
   // Angel is respecting the APCS.
