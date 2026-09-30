@@ -6,9 +6,23 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-aarch32-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-10-01
+
+* v4.2.1
+* 097c27d update READMEs to mention Cortex-A/R
+* 0f29565 add doxygen
+* a4cde73 register-inlines.h tweaks
+* 51eebdf semihosting.cpp rework conditionals
+* 71bd7b2 semihosting.cpp rework
+* e04e19a clobber memory
+* c18f83e MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE & noexcept
+
 ## 2026-09-30
 
-* v4.2.0
+* 14fdd68 add CLAUDE.md
+* f488c07 README update
+* c2a9d9d 4.2.0
+* e0c25c4 prepare v4.2.0
 * 9a954f9 README update
 * 5e698d9 fix guard consistency
 * 68d37ff semihosting.cpp: __has_include("micro-os-plus/semihosting.h")
