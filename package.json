@@ -1,6 +1,6 @@
 {
   "name": "@micro-os-plus/architecture-aarch32",
-  "version": "4.2.1-pre",
+  "version": "4.2.1",
   "description": "A source code library with the µOS++ architecture definitions for Arm AArch32 (32-bit Cortex-A and Cortex-R)",
   "keywords": [
     "xpack",
