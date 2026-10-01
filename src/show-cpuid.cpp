@@ -19,11 +19,10 @@
  * Decodes the `MIDR` (Main ID Register) fields and writes a line like
  * `Arm Cortex-A7 r0p5` to the trace output channel.
  *
- * The implementer codes are those used by the AArch64 package; the
- * Cortex-A part numbers are those listed in the Linux kernel
- * `arch/arm/include/asm/cputype.h` and `arch/arm64/include/asm/cputype.h`,
- * and the Cortex-R part numbers are those in the Arm Technical Reference
- * Manuals.
+ * The implementer codes and the output format are the same as in the
+ * AArch64 and Cortex-M packages. The Cortex-A7, A8, A9, A15, R5, and R52
+ * part numbers were checked on QEMU; the others are the values published
+ * by Arm.
  */
 
 #include "micro-os-plus/architecture.h"
