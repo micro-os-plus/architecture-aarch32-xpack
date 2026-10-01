@@ -42,7 +42,10 @@ extern "C"
    * is defined; it is not part of the application API, therefore it has
    * no C++ equivalent.
    *
-   * On AArch32 it is intentionally empty.
+   * On AArch32 it reads the Main ID Register (MIDR) and writes a line
+   * like `Arm Cortex-A7 r0p5` to the trace output channel; it must be
+   * called in a privileged mode. Without the `diag-trace` package, it is
+   * empty.
    */
   void
   micro_os_plus_architecture_show_cpuid (void);
