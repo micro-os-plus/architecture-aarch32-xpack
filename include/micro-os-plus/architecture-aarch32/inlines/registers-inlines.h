@@ -66,6 +66,24 @@ extern "C"
 
   /**
    * @details
+   * The `"memory"` clobber prevents the compiler from moving memory
+   * accesses, including stack accesses, across the change.
+   */
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  aarch32_architecture_set_sp (aarch32_architecture_register_t top_of_stack)
+  {
+    __asm__ volatile (
+
+        " mov sp, %0 "
+
+        : /* Outputs */
+        : "r"(top_of_stack) /* Inputs */
+        : "memory" /* Clobbers */
+    );
+  }
+
+  /**
+   * @details
    * Forwards to `aarch32_architecture_get_sp()`.
    */
   MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
@@ -73,6 +91,17 @@ extern "C"
   micro_os_plus_architecture_get_sp (void)
   {
     return aarch32_architecture_get_sp ();
+  }
+
+  /**
+   * @details
+   * Forwards to `aarch32_architecture_set_sp()`.
+   */
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  micro_os_plus_architecture_set_sp (
+      micro_os_plus_architecture_register_t top_of_stack)
+  {
+    aarch32_architecture_set_sp (top_of_stack);
   }
 
   // --------------------------------------------------------------------------
@@ -99,6 +128,16 @@ namespace aarch32::architecture::registers
     return aarch32_architecture_get_sp ();
   }
 
+  /**
+   * @details
+   * Forwards to `aarch32_architecture_set_sp()`.
+   */
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  sp (register_t top_of_stack) noexcept
+  {
+    aarch32_architecture_set_sp (top_of_stack);
+  }
+
   // --------------------------------------------------------------------------
 } // namespace aarch32::architecture::registers
 
@@ -114,6 +153,16 @@ namespace micro_os_plus::architecture::registers
   sp (void) noexcept
   {
     return micro_os_plus_architecture_get_sp ();
+  }
+
+  /**
+   * @details
+   * Forwards to `micro_os_plus_architecture_set_sp()`.
+   */
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  sp (register_t top_of_stack) noexcept
+  {
+    micro_os_plus_architecture_set_sp (top_of_stack);
   }
 
   // --------------------------------------------------------------------------

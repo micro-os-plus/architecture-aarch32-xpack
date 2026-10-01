@@ -59,10 +59,36 @@ extern "C"
   MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE aarch32_architecture_register_t
   aarch32_architecture_get_sp (void);
 
-  // TODO: add setter.
+  /**
+   * @brief Set the current Stack Pointer.
+   *
+   * @details
+   * Writes the banked SP (R13) of the current processor mode with
+   * `mov sp, <Rn>`; the stack pointers of the other modes are not
+   * affected. Setting them requires switching to each mode (for example
+   * with `cps`), which is the job of the assembly startup code.
+   *
+   * This is intended for low-level code, such as the startup code or
+   * a context switch. The compiler addresses local variables and spilled
+   * registers relative to the stack pointer (often without a frame
+   * pointer), therefore changing it from C/C++ is safe only when the
+   * calling function has no stack frame that is still in use, or when it
+   * is immediately followed by a call to a function that does not
+   * return.
+   *
+   * The value must be at least 4-byte aligned, and 8-byte aligned at
+   * public interfaces, as required by the AAPCS. Unlike AArch64, the
+   * hardware does not check the stack pointer alignment, therefore a
+   * misaligned value does not fault immediately, but may break the
+   * calling convention later.
+   *
+   * @param top_of_stack The new value of the Stack Pointer.
+   */
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  aarch32_architecture_set_sp (aarch32_architecture_register_t top_of_stack);
 
   // --------------------------------------------------------------------------
-  // Portable architecture assembly instructions in C.
+  // Portable architecture registers getters and mutators in C.
 
   /**
    * @brief Get the current Stack Pointer.
@@ -77,7 +103,19 @@ extern "C"
   micro_os_plus_architecture_register_t
   micro_os_plus_architecture_get_sp (void);
 
-  // TODO: add setter.
+  /**
+   * @brief Set the current Stack Pointer.
+   *
+   * @details
+   * Portable wrapper, available on all µOS++ architectures; on AArch32
+   * it forwards to `aarch32_architecture_set_sp()`, and the same
+   * restrictions apply.
+   *
+   * @param top_of_stack The new value of the Stack Pointer.
+   */
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  micro_os_plus_architecture_set_sp (
+      micro_os_plus_architecture_register_t top_of_stack);
 
   // --------------------------------------------------------------------------
 
@@ -92,7 +130,7 @@ extern "C"
 namespace aarch32::architecture::registers
 {
   // --------------------------------------------------------------------------
-  // Architecture getters in C++.
+  // Architecture registers getters and mutators in C++.
 
   /**
    * @brief Get the current Stack Pointer.
@@ -106,7 +144,17 @@ namespace aarch32::architecture::registers
   [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE register_t
   sp (void) noexcept;
 
-  // TODO: add setter.
+  /**
+   * @brief Set the current Stack Pointer.
+   *
+   * @details
+   * C++ wrapper for `aarch32_architecture_set_sp()`; the same
+   * restrictions apply.
+   *
+   * @param top_of_stack The new value of the Stack Pointer.
+   */
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  sp (register_t top_of_stack) noexcept;
 
   // --------------------------------------------------------------------------
 } // namespace aarch32::architecture::registers
@@ -114,7 +162,7 @@ namespace aarch32::architecture::registers
 namespace micro_os_plus::architecture::registers
 {
   // --------------------------------------------------------------------------
-  // Portable architecture assembly instructions in C++.
+  // Portable architecture registers getters and mutators in C++.
 
   /**
    * @brief Get the current Stack Pointer.
@@ -128,7 +176,17 @@ namespace micro_os_plus::architecture::registers
   [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE register_t
   sp (void) noexcept;
 
-  // TODO: add setter.
+  /**
+   * @brief Set the current Stack Pointer.
+   *
+   * @details
+   * Portable wrapper for `micro_os_plus_architecture_set_sp()`; the same
+   * restrictions apply.
+   *
+   * @param top_of_stack The new value of the Stack Pointer.
+   */
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  sp (register_t top_of_stack) noexcept;
 
   // --------------------------------------------------------------------------
 } // namespace micro_os_plus::architecture::registers
