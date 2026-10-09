@@ -29,7 +29,7 @@
 
 // ----------------------------------------------------------------------------
 
-#if defined(MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED)
+#if defined(MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED)
 
 // The trace output is optional; without the `diag-trace` package, the
 // function is empty.
@@ -231,6 +231,6 @@ micro_os_plus_architecture_show_cpuid (void)
 
 // ----------------------------------------------------------------------------
 
-#endif // defined(MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED)
+#endif // defined(MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED)
 
 // ----------------------------------------------------------------------------

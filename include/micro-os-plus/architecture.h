@@ -19,7 +19,7 @@
  * This is the only header applications should include. It first includes
  * the optional `micro-os-plus/project-config.h` and
  * `micro-os-plus/architecture-defines.h` configuration headers, then,
- * only when `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` is defined,
+ * only when `MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED` is defined,
  * validates the target and includes the internal headers from the
  * `micro-os-plus/architecture-aarch32` folder.
  *
@@ -56,7 +56,7 @@
 
 // ----------------------------------------------------------------------------
 
-#if defined(MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED)
+#if defined(MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED)
 
 // ----------------------------------------------------------------------------
 
@@ -89,7 +89,7 @@
 
 // ----------------------------------------------------------------------------
 
-#endif // defined(MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED)
+#endif // defined(MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED)
 
 // ----------------------------------------------------------------------------
 
