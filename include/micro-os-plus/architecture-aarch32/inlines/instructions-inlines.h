@@ -48,7 +48,7 @@ extern "C"
    * has no clobbers, since the instruction has no effect on registers or
    * memory.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   aarch32_architecture_nop (void)
   {
     __asm__ volatile (
@@ -66,7 +66,7 @@ extern "C"
    * The `"memory"` clobber prevents the compiler from moving or
    * eliminating stores across the breakpoint.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   aarch32_architecture_bkpt (void)
   {
     __asm__ volatile (
@@ -84,7 +84,7 @@ extern "C"
    * The `"memory"` clobber forces the compiler to read again, after the
    * instruction, any values that interrupt handlers may have changed.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   aarch32_architecture_wfi (void)
   {
     __asm__ volatile (
@@ -102,7 +102,7 @@ extern "C"
    * The `"memory"` clobber makes the hardware barrier also a compiler
    * barrier, so that memory accesses are not moved across it.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   aarch32_architecture_dsb (void)
   {
     __asm__ volatile (
@@ -120,7 +120,7 @@ extern "C"
    * The `"memory"` clobber makes the hardware barrier also a compiler
    * barrier, so that memory accesses are not moved across it.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   aarch32_architecture_isb (void)
   {
     __asm__ volatile (
@@ -137,7 +137,7 @@ extern "C"
    * @details
    * Forwards to `aarch32_architecture_nop()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_nop (void)
   {
     aarch32_architecture_nop ();
@@ -147,7 +147,7 @@ extern "C"
    * @details
    * Forwards to `aarch32_architecture_bkpt()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_brk (void)
   {
     aarch32_architecture_bkpt ();
@@ -157,7 +157,7 @@ extern "C"
    * @details
    * Forwards to `aarch32_architecture_wfi()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_wfi (void)
   {
     aarch32_architecture_wfi ();
@@ -167,7 +167,7 @@ extern "C"
    * @details
    * Forwards to `aarch32_architecture_dsb()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_data_barrier (void)
   {
     aarch32_architecture_dsb ();
@@ -177,7 +177,7 @@ extern "C"
    * @details
    * Forwards to `aarch32_architecture_isb()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_instruction_barrier (void)
   {
     aarch32_architecture_isb ();
@@ -201,7 +201,7 @@ namespace aarch32::architecture
    * @details
    * Forwards to `aarch32_architecture_nop()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   nop (void) noexcept
   {
     aarch32_architecture_nop ();
@@ -211,7 +211,7 @@ namespace aarch32::architecture
    * @details
    * Forwards to `aarch32_architecture_bkpt()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   bkpt (void) noexcept
   {
     aarch32_architecture_bkpt ();
@@ -221,7 +221,7 @@ namespace aarch32::architecture
    * @details
    * Forwards to `aarch32_architecture_wfi()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   wfi (void) noexcept
   {
     aarch32_architecture_wfi ();
@@ -231,7 +231,7 @@ namespace aarch32::architecture
    * @details
    * Forwards to `aarch32_architecture_dsb()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   dsb (void) noexcept
   {
     aarch32_architecture_dsb ();
@@ -241,7 +241,7 @@ namespace aarch32::architecture
    * @details
    * Forwards to `aarch32_architecture_isb()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   isb (void) noexcept
   {
     aarch32_architecture_isb ();
@@ -258,7 +258,7 @@ namespace micro_os_plus::architecture
    * @details
    * Forwards to `aarch32::architecture::nop()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   nop (void) noexcept
   {
     aarch32::architecture::nop ();
@@ -268,7 +268,7 @@ namespace micro_os_plus::architecture
    * @details
    * Forwards to `aarch32::architecture::bkpt()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   brk (void) noexcept
   {
     aarch32::architecture::bkpt ();
@@ -278,7 +278,7 @@ namespace micro_os_plus::architecture
    * @details
    * Forwards to `aarch32::architecture::wfi()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   wfi (void) noexcept
   {
     aarch32::architecture::wfi ();
@@ -288,7 +288,7 @@ namespace micro_os_plus::architecture
    * @details
    * Forwards to `aarch32::architecture::dsb()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   data_barrier (void) noexcept
   {
     aarch32::architecture::dsb ();
@@ -298,7 +298,7 @@ namespace micro_os_plus::architecture
    * @details
    * Forwards to `aarch32::architecture::isb()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   instruction_barrier (void) noexcept
   {
     aarch32::architecture::isb ();

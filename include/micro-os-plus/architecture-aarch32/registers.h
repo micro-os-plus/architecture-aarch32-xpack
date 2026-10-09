@@ -56,7 +56,7 @@ extern "C"
    *
    * @return The value of the Stack Pointer.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE aarch32_architecture_register_t
+  MICRO_OS_PLUS_ALWAYS_INLINE aarch32_architecture_register_t
   aarch32_architecture_get_sp (void);
 
   /**
@@ -84,7 +84,7 @@ extern "C"
    *
    * @param top_of_stack The new value of the Stack Pointer.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   aarch32_architecture_set_sp (aarch32_architecture_register_t top_of_stack);
 
   // --------------------------------------------------------------------------
@@ -99,7 +99,7 @@ extern "C"
    *
    * @return The value of the Stack Pointer.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+  MICRO_OS_PLUS_ALWAYS_INLINE
   micro_os_plus_architecture_register_t
   micro_os_plus_architecture_get_sp (void);
 
@@ -113,7 +113,7 @@ extern "C"
    *
    * @param top_of_stack The new value of the Stack Pointer.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_set_sp (
       micro_os_plus_architecture_register_t top_of_stack);
 
@@ -141,7 +141,7 @@ namespace aarch32::architecture::registers
    *
    * @return The value of the Stack Pointer.
    */
-  [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE register_t
+  [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE register_t
   sp (void) noexcept;
 
   /**
@@ -153,7 +153,7 @@ namespace aarch32::architecture::registers
    *
    * @param top_of_stack The new value of the Stack Pointer.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   sp (register_t top_of_stack) noexcept;
 
   // --------------------------------------------------------------------------
@@ -173,7 +173,7 @@ namespace micro_os_plus::architecture::registers
    *
    * @return The value of the Stack Pointer.
    */
-  [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE register_t
+  [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE register_t
   sp (void) noexcept;
 
   /**
@@ -185,7 +185,7 @@ namespace micro_os_plus::architecture::registers
    *
    * @param top_of_stack The new value of the Stack Pointer.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   sp (register_t top_of_stack) noexcept;
 
   // --------------------------------------------------------------------------

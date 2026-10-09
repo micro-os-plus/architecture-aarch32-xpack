@@ -65,9 +65,9 @@
  * such as `[[nodiscard]]`.
  */
 #if defined(__cplusplus)
-#define MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE [[gnu::always_inline]] inline
+#define MICRO_OS_PLUS_ALWAYS_INLINE [[gnu::always_inline]] inline
 #else
-#define MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE \
+#define MICRO_OS_PLUS_ALWAYS_INLINE \
   static inline __attribute__ ((always_inline))
 #endif // defined(__cplusplus)
 

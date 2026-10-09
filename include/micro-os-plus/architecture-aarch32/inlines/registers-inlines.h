@@ -47,7 +47,7 @@ extern "C"
    * time without the compiler knowing it, and each call must read the
    * register again.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE aarch32_architecture_register_t
+  MICRO_OS_PLUS_ALWAYS_INLINE aarch32_architecture_register_t
   aarch32_architecture_get_sp (void)
   {
     aarch32_architecture_register_t result;
@@ -69,7 +69,7 @@ extern "C"
    * The `"memory"` clobber prevents the compiler from moving memory
    * accesses, including stack accesses, across the change.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   aarch32_architecture_set_sp (aarch32_architecture_register_t top_of_stack)
   {
     __asm__ volatile (
@@ -86,7 +86,7 @@ extern "C"
    * @details
    * Forwards to `aarch32_architecture_get_sp()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+  MICRO_OS_PLUS_ALWAYS_INLINE
   micro_os_plus_architecture_register_t
   micro_os_plus_architecture_get_sp (void)
   {
@@ -97,7 +97,7 @@ extern "C"
    * @details
    * Forwards to `aarch32_architecture_set_sp()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_set_sp (
       micro_os_plus_architecture_register_t top_of_stack)
   {
@@ -122,7 +122,7 @@ namespace aarch32::architecture::registers
    * @details
    * Forwards to `aarch32_architecture_get_sp()`.
    */
-  [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE register_t
+  [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE register_t
   sp (void) noexcept
   {
     return aarch32_architecture_get_sp ();
@@ -132,7 +132,7 @@ namespace aarch32::architecture::registers
    * @details
    * Forwards to `aarch32_architecture_set_sp()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   sp (register_t top_of_stack) noexcept
   {
     aarch32_architecture_set_sp (top_of_stack);
@@ -149,7 +149,7 @@ namespace micro_os_plus::architecture::registers
    * @details
    * Forwards to `micro_os_plus_architecture_get_sp()`.
    */
-  [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE register_t
+  [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE register_t
   sp (void) noexcept
   {
     return micro_os_plus_architecture_get_sp ();
@@ -159,7 +159,7 @@ namespace micro_os_plus::architecture::registers
    * @details
    * Forwards to `micro_os_plus_architecture_set_sp()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   sp (register_t top_of_stack) noexcept
   {
     micro_os_plus_architecture_set_sp (top_of_stack);
