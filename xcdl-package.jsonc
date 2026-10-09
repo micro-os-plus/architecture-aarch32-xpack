@@ -3,11 +3,10 @@
   "minimumXcdlRequired": "2.0.0",
   "license": "MIT",
   "copyright": "Copyright (c) 2022-2026 Liviu Ionescu. All rights reserved.",
-  "description": "Top architecture aarch32 components",
+  "description": "Top architecture AArch32 components",
   "cdlComponents": [
     {
-      "id": "micro-os-plus.architectures.aarch32",
-      "alias": "micro-os-plus.architecture",
+      "id": "micro-os-plus.architecture.aarch32",
       "display": "AArch32 (Cortex-A/R) architecture",
       "description": "The Arm AArch32 architecture definitions, for 32-bit Cortex-A and Cortex-R devices",
       "publicIncludeFolders": [
@@ -29,7 +28,7 @@
         "type": "c-header",
         "filePath": "{{buildFolderPath}}/generated/include/micro-os-plus/architecture-defines.h"
       },
-      // "defaultDefine": "MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED"
+      // "defaultDefine": "MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED"
     }
   ]
 }
