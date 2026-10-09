@@ -105,7 +105,7 @@ and semihosting trap instruction, and are supported by the separate
 [architecture-cortexm](https://github.com/micro-os-plus/architecture-cortexm-xpack)
 package.
 
-When `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` is defined, the
+When `MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED` is defined, the
 `micro-os-plus/architecture.h` header checks the predefined `__arm__` and
 `__aarch64__` macros and the ACLE `__ARM_ARCH_PROFILE` macro, and stops the
 build with an `#error` for:
@@ -165,7 +165,7 @@ The configuration definitions are expected either in the specific header file
 `micro-os-plus/architecture-defines.h` or in the common project configuration
 file `micro-os-plus/project-config.h`:
 
-- `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` - enable the inclusion of the
+- `MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED` - enable the inclusion of the
   architecture files in the build; without it, the headers and the source
   files are empty; it must be defined only for Cortex-A and Cortex-R
   devices
@@ -243,13 +243,13 @@ to an application with:
 ```meson
 exe = executable(
   'your-target',
-  c_args: micro_os_plus_architectures_aarch32_dependency_compile_c_args,
-  cpp_args: micro_os_plus_architectures_aarch32_dependency_compile_cpp_args,
+  c_args: micro_os_plus_architecture_aarch32_dependency_compile_c_args,
+  cpp_args: micro_os_plus_architecture_aarch32_dependency_compile_cpp_args,
   link_with: [
     # Nothing, not static.
   ],
   dependencies: [
-    micro_os_plus_architectures_aarch32_dependency,
+    micro_os_plus_architecture_aarch32_dependency,
   ]
 )
 ```
@@ -272,7 +272,7 @@ redefined at device level.
 
 ### Examples
 
-With `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` defined:
+With `MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED` defined:
 
 ```c++
 #include "micro-os-plus/architecture.h"
@@ -314,15 +314,15 @@ are:
 - v5.x:
   - `MICRO_OS_PLUS_INTEGER_STARTUP_STACK_FILL_MAGIC` was renamed
     `MICRO_OS_PLUS_ARCHITECTURE_STACK_FILL_MAGIC`
-  - when `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` is defined, builds
+  - when `MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED` is defined, builds
     for Cortex-M, AArch64, or classic (profile-less) Arm cores stop with
     an `#error`
 - v4.x:
   - the CMake alias was renamed `micro-os-plus::architectures-aarch32`
     (the generic `micro-os-plus::architecture` was preserved)
   - the specific meson dependency is
-    `micro_os_plus_architectures_aarch32_dependency`
-  - `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` must be defined to enable this library
+    `micro_os_plus_architecture_aarch32_dependency`
+  - `MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED` must be defined to enable this library
   - `src/semihosting.cpp` and `src/show-cpuid.cpp` were added
     and must be compiled
   - the inline headers were moved to the `inlines` folder
