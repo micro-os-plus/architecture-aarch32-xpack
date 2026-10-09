@@ -1,7 +1,7 @@
-[![license](https://img.shields.io/github/license/micro-os-plus/architecture-aarch32-xpack)](https://github.com/micro-os-plus/architecture-aarch32/blob/xpack/LICENSE)
-[![CI on Push](https://github.com/micro-os-plus/architecture-aarch32-xpack/actions/workflows/ci.yml/badge.svg)](https://github.com/micro-os-plus/architecture-aarch32-xpack/actions/workflows/ci.yml)
-[![GitHub issues](https://img.shields.io/github/issues/micro-os-plus/architecture-aarch32-xpack.svg)](https://github.com/micro-os-plus/architecture-aarch32/issues/)
-[![GitHub pulls](https://img.shields.io/github/issues-pr/micro-os-plus/architecture-aarch32-xpack.svg)](https://github.com/micro-os-plus/architecture-aarch32/pulls/)
+[![license](https://img.shields.io/github/license/micro-os-plus/architecture-aarch32-xpack)](https://github.com/micro-os-plus/architecture-aarch32-xpack/blob/xpack/LICENSE)
+[![CI on Push](https://github.com/micro-os-plus/architecture-aarch32-xpack/actions/workflows/test-ci.yml/badge.svg)](https://github.com/micro-os-plus/architecture-aarch32-xpack/actions/workflows/test-ci.yml)
+[![GitHub issues](https://img.shields.io/github/issues/micro-os-plus/architecture-aarch32-xpack.svg)](https://github.com/micro-os-plus/architecture-aarch32-xpack/issues/)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/micro-os-plus/architecture-aarch32-xpack.svg)](https://github.com/micro-os-plus/architecture-aarch32-xpack/pulls/)
 
 # Maintainer info
 
@@ -38,14 +38,13 @@ git clone \
 A recent [xpm](https://xpack.github.io/xpm/), which is a portable
 [Node.js](https://nodejs.org/) command line application.
 
-To run the native tests, a C++ development environment is required.
-On macOS install Command Line Tools, on Ubuntu `build-essential`.
+To check the sources, an `arm-none-eabi-gcc` toolchain is required.
 
 ## Code formatting
 
-Code formatting is done using `clang-format --style=file`, either manually
-from a script, or automatically from Visual Studio Code, or the Eclipse
-CppStyle plug-in.
+Code formatting is done using `clang-format` with the
+`config/.clang-format` configuration, either manually with
+`xpm run clang-format`, or automatically from Visual Studio Code.
 
 Always reformat the source files that were changed.
 
@@ -66,8 +65,8 @@ No need to add a tag here, it'll be added when the release is created.
 
 ### Increase the version
 
-Determine the upstream version (like `4.2.1`) and eventually update the
-`package.json` file; the format is `4.2.1-pre`.
+Determine the upstream version (like `5.0.0`) and eventually update the
+`package.json` file; the format is `5.0.0-pre`.
 
 ### Fix possible open issues
 
@@ -75,7 +74,7 @@ Check GitHub issues and pull requests:
 
 - <https://github.com/micro-os-plus/architecture-aarch32-xpack/issues/>
 
-and fix them; assign them to a milestone (like `4.2.1`).
+and fix them; assign them to a milestone (like `5.0.0`).
 
 ### Update `README-MAINTAINER.md`
 
@@ -86,22 +85,23 @@ related to the new version.
 
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
-- add a new entry like _\* v4.2.1_
-- commit with a message like _prepare v4.2.1_
+- add a new entry like _\* v5.0.0_
+- commit with a message like _prepare v5.0.0_
 
 ### Push changes
 
 - reformat the source files that were changed
 - commit and push
 
-### Manual tests
+### Manual checks
 
-To run the tests manually on the local machine:
+There are no tests in this package yet; the functionality is exercised
+by the tests of the packages that depend on it.
 
-```sh
-xpm run install-all -C ~/Work/architecture-aarch32-xpack.git
-xpm run test-all -C ~/Work/architecture-aarch32-xpack.git
-```
+At least check that the sources compile without warnings with
+`arm-none-eabi-gcc`, for both a Cortex-A and a Cortex-R device (for
+example `-mcpu=cortex-a7` and `-mcpu=cortex-r5`), in both Arm (`-marm`)
+and Thumb (`-mthumb`) states.
 
 ## Publish on the npmjs.com server
 
@@ -111,25 +111,11 @@ xpm run test-all -C ~/Work/architecture-aarch32-xpack.git
   only `package.json`, `README.md`, `LICENSE`, `CHANGELOG.md`,
   the sources and CMake/meson files;
   possibly adjust `.npmignore`
-- `npm version 4.2.1`
+- `npm version 5.0.0`
 - push the `xpack-development` branch to GitHub
 - the `postversion` npm script should also update tags via `git push origin --tags`
 - wait for the CI job to complete
-  (<https://github.com/micro-os-plus/architecture-aarch32-xpack/actions/workflows/ci.yml>)
-
-### Test on all platforms
-
-In addition, it is possible to manually trigger a **test-all** job, that
-runs all available builds, on all supported platforms, including Linux Arm
-and macOS Apple Silicon.
-
-For this:
-
-- start the `~/actions-runners/micro-os-plus/run.sh &` runner on `xbbma` and `xbbla`
-- ensure that the `xpack-development` branch is pushed
-- run the `trigger-workflow-test-all` action
-- wait for the **test-all** job to complete
-  (<https://github.com/micro-os-plus/architecture-aarch32-xpack/actions/workflows/test-all.yml>)
+  (<https://github.com/micro-os-plus/architecture-aarch32-xpack/actions/workflows/test-ci.yml>)
 
 ### Publish
 
@@ -155,5 +141,5 @@ When the package is considered stable:
 When the release is considered stable, promote it as `latest`:
 
 - `npm dist-tag ls @micro-os-plus/architecture-aarch32`
-- `npm dist-tag add @micro-os-plus/architecture-aarch32@4.2.1 latest`
+- `npm dist-tag add @micro-os-plus/architecture-aarch32@5.0.0 latest`
 - `npm dist-tag ls @micro-os-plus/architecture-aarch32`

@@ -10,8 +10,8 @@ code in this repository.
 `@micro-os-plus/architecture-aarch32` is a small µOS++ source library (an xpm
 package, also usable as a Git submodule) that provides the architecture layer
 for Arm **Cortex-A and Cortex-R** devices in AArch32 (32-bit) state: register
-types, wrappers for a few CPU instructions, a Stack Pointer getter, and the
-Angel semihosting call.
+types, wrappers for a few CPU instructions, a Stack Pointer getter and
+setter, the CPU identification display, and the semihosting call.
 It is minimalistic and exists mainly to run semihosted tests (for example
 under QEMU). It does not use CMSIS Core.
 
@@ -42,24 +42,30 @@ their own application.
   it also rejects targets other than 32-bit Cortex-A and Cortex-R. It
   requires C++20 when compiled as C++.
 - `include/micro-os-plus/architecture-aarch32/`:
-  - `defines.h`: architecture macros (also safe for assembly sources).
+  - `defines.h`: architecture macros (also safe for assembly sources),
+    including `MICRO_OS_PLUS_ARCHITECTURE_STACK_FILL_MAGIC` and
+    `MICRO_OS_PLUS_ALWAYS_INLINE`.
   - `types.h`: `aarch32_architecture_register_t` (`uint32_t`), the signed
     variant, and the portable `micro_os_plus_architecture_*` aliases.
   - `instructions.h`: `nop`, `bkpt`/`brk`, `wfi`, `dsb`/`data_barrier`, and
     `isb`/`instruction_barrier`.
-  - `registers.h`: `sp()` getter (setters are still TODO).
+  - `registers.h`: `sp()` getter and `sp(value)` setter (current mode
+    banked SP only), consistent with the AArch64 package.
   - `functions.h`: `micro_os_plus_architecture_show_cpuid()`.
   - `inlines/`: the inline definitions (inline assembly) of the declarations
     above, plus the semihosting type aliases in `semihosting-inlines.h`.
 - `src/`:
-  - `semihosting.cpp`: `micro_os_plus_semihosting_call_host()` using `swi`
+  - `semihosting.cpp`: `micro_os_plus_semihosting_call_host()` using `svc`
     (`0xAB` in Thumb, `0x123456` in Arm state); compiled only when
     `micro-os-plus/semihosting.h` is available and
     `MICRO_OS_PLUS_SEMIHOSTING_ENABLED` is also defined. The header must be
     included before that macro is tested, since it may be defined in
     `semihosting-defines.h`.
-  - `show-cpuid.cpp`: intentionally empty (AArch32 has no CPUID here).
-  - `_init_fini.c`: empty `_init()`/`_fini()` required by newlib.
+  - `show-cpuid.cpp`: reads `MIDR` and prints the core name and revision
+    (e.g. `Arm Cortex-A7 r0p5`) through `diag-trace`, if available; kept
+    consistent with the AArch64 implementation.
+  - `_init_fini.c`: weak, empty `_init()`/`_fini()`, required by newlib
+    when the toolchain `crti.o` is not linked.
 - `linker-scripts/sections-ram.ld`: generic RAM-only linker script, which
   device packages may override.
 - `scripts/`: Node.js helpers run through xpm actions (`clang-format`,
@@ -80,9 +86,13 @@ Internal functions used only by other µOS++ packages, such as
 `micro_os_plus_architecture_show_cpuid()` (called by the `startup` package),
 are exposed only as portable C functions and need no C++ variant.
 
-The C functions are declared `static` in the headers and defined in the
-matching `inlines/*-inlines.h` file. The portable names are part of the
-contract shared by all µOS++ architecture packages (for example
+All wrappers are declared and defined with
+`MICRO_OS_PLUS_ALWAYS_INLINE` (`static inline` in C, `inline`
+in C++, always inlined), and defined in the matching `inlines/*-inlines.h`
+file; the C++ wrappers are also `noexcept`, and getters `[[nodiscard]]`.
+
+The portable names are part of the contract shared by all µOS++
+architecture packages (for example
 `architecture-cortexm`), so renaming them is a breaking change and must be
 recorded in the README "incompatible changes" list and `CHANGELOG.md`.
 
@@ -110,7 +120,9 @@ Exported targets:
   `_compile_c_args` and `_compile_cpp_args` variables.
 
 The dependency on `@micro-os-plus/semihosting` is deliberately not declared
-(it would be circular); `semihosting.cpp` uses `__has_include` instead.
+(it would be circular); `semihosting.cpp` uses `__has_include` instead. The
+same applies to the optional `@micro-os-plus/diag-trace`, used by
+`show-cpuid.cpp`.
 
 Other files marked `DO NOT EDIT! Automatically generated` (for example
 `.github/workflows/test-ci.yml`) come from `@xpack/npm-packages-helper`

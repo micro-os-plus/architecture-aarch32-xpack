@@ -2,7 +2,7 @@
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/micro-os-plus/architecture-aarch32-xpack)](https://github.com/micro-os-plus/architecture-aarch32-xpack/tags/)
 [![npm (scoped)](https://img.shields.io/npm/v/@micro-os-plus/architecture-aarch32.svg?color=blue)](https://www.npmjs.com/package/@micro-os-plus/architecture-aarch32/)
 [![license](https://img.shields.io/github/license/micro-os-plus/architecture-aarch32-xpack)](https://github.com/micro-os-plus/architecture-aarch32-xpack/blob/xpack/LICENSE)
-[![CI on Push](https://github.com/micro-os-plus/architecture-aarch32-xpack/actions/workflows/ci.yml/badge.svg)](https://github.com/micro-os-plus/architecture-aarch32-xpack/actions/workflows/ci.yml)
+[![CI on Push](https://github.com/micro-os-plus/architecture-aarch32-xpack/actions/workflows/test-ci.yml/badge.svg)](https://github.com/micro-os-plus/architecture-aarch32-xpack/actions/workflows/test-ci.yml)
 
 # A source code library with the µOS++ architecture definitions for Arm AArch32 (32-bit Cortex-A and Cortex-R)
 
@@ -106,8 +106,9 @@ and semihosting trap instruction, and are supported by the separate
 package.
 
 When `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` is defined, the
-`micro-os-plus/architecture.h` header checks the ACLE `__ARM_ARCH_PROFILE`
-macro and stops the build with an `#error` for:
+`micro-os-plus/architecture.h` header checks the predefined `__arm__` and
+`__aarch64__` macros and the ACLE `__ARM_ARCH_PROFILE` macro, and stops the
+build with an `#error` for:
 
 - M-profile (Cortex-M) devices;
 - AArch64 (64-bit) targets;
@@ -145,13 +146,18 @@ The header files to be included in user projects are:
 #include "micro-os-plus/architecture.h"
 ```
 
+The same header can also be included from assembly sources (`.S` files);
+in this case only the preprocessor definitions are included.
+
 #### Source files
 
 The source files to be added to user projects are:
 
-- `src/show-cpuid.cpp` - empty, this architecture has no CPUID
+- `src/show-cpuid.cpp` - display the core name and revision, read from
+  the Main ID Register (MIDR), when the trace output is available
 - `src/semihosting.cpp` - the semihosting call for this platform
-- `src/_init_fini.c` - empty definitions required by newlib
+- `src/_init_fini.c` - weak, empty definitions of `_init()` and `_fini()`,
+  required by newlib when the toolchain startup files are not linked
 
 #### Preprocessor definitions
 
@@ -164,7 +170,14 @@ file `micro-os-plus/project-config.h`:
   files are empty; it must be defined only for Cortex-A and Cortex-R
   devices
 - `MICRO_OS_PLUS_SEMIHOSTING_ENABLED` - enable the semihosting call in
-  `src/semihosting.cpp`; requires the `semihosting` package
+  `src/semihosting.cpp`; requires the `semihosting` package; it may also be
+  defined in `micro-os-plus/semihosting-defines.h`
+
+The package itself provides, in `micro-os-plus/architecture-aarch32/defines.h`:
+
+- `MICRO_OS_PLUS_ARCHITECTURE_STACK_FILL_MAGIC` - the value used by the
+  device and RTOS port packages to fill the stacks (stored in memory as the
+  bytes `DE AD BE EF`)
 
 #### Compiler options
 
@@ -190,6 +203,8 @@ Architecture specific:
 #### Dependencies
 
 - `@micro-os-plus/semihosting` - optional, required only when semihosting is used
+- `@micro-os-plus/diag-trace` - optional, required only to display the CPU
+  identification
 
 #### CMake
 
@@ -267,7 +282,14 @@ using namespace micro_os_plus;
 architecture::register_t reg;
 
 reg = architecture::registers::sp();
+
+architecture::data_barrier();
+architecture::instruction_barrier();
 ```
+
+The Stack Pointer setter, `architecture::registers::sp(value)`, changes only
+the banked SP of the current processor mode, and is intended for low-level
+code, like the startup code or a context switch.
 
 ### Known problems
 
@@ -289,6 +311,12 @@ According to [semver](https://semver.org) rules:
 The incompatible changes, in reverse chronological order,
 are:
 
+- v5.x:
+  - `MICRO_OS_PLUS_INTEGER_STARTUP_STACK_FILL_MAGIC` was renamed
+    `MICRO_OS_PLUS_ARCHITECTURE_STACK_FILL_MAGIC`
+  - when `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` is defined, builds
+    for Cortex-M, AArch64, or classic (profile-less) Arm cores stop with
+    an `#error`
 - v4.x:
   - the CMake alias was renamed `micro-os-plus::architectures-aarch32`
     (the generic `micro-os-plus::architecture` was preserved)

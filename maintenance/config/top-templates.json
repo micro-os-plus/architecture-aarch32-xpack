@@ -1,5 +1,7 @@
 {
   "descriptiveName": "Architecture: AArch32",
+  "permalinkName": "architecture-aarch32",
+  "preferredName": "Architecture: AArch32",
   "githubActionsNodeVersions": [
     "24"
   ],
