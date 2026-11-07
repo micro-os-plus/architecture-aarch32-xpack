@@ -6,8 +6,22 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-aarch32-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-11-07
+
+* v5.0.0
+* b15182c re-generate top commons
+
+## 2026-10-09
+
+* 34bd5a8 re-generate top commons
+* 70ceba5 xcdl micro-os-plus.architecture.aarch32
+* 31456c3 MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED
+* 29647b9 re-generate top commons
+* 8d90da7 update MICRO_OS_PLUS_ALWAYS_INLINE
+
 ## 2026-10-01
 
+* 03a32b4 doxygen updates
 * b843612 rename _ARCHITECTURE_STACK_FILL_MAGIC
 * 95395d5 add sp setter
 * ec40be6 implement show_cpuid
