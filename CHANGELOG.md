@@ -8,7 +8,11 @@ and close existing issues and pull requests.
 
 ## 2026-10-01
 
-* v4.2.1
+* b843612 rename _ARCHITECTURE_STACK_FILL_MAGIC
+* 95395d5 add sp setter
+* ec40be6 implement show_cpuid
+* 08595ff 4.2.1
+* f980099 prepare v4.2.1
 * 097c27d update READMEs to mention Cortex-A/R
 * 0f29565 add doxygen
 * a4cde73 register-inlines.h tweaks
@@ -28,7 +32,7 @@ and close existing issues and pull requests.
 * 68d37ff semihosting.cpp: __has_include("micro-os-plus/semihosting.h")
 * 4b3a84d fix the sp getter/setter
 * 72e51b8 cosmetics
-* ba9ea70 more MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED
+* ba9ea70 more MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED
 * 317e1c2 add data_barier & instruction_barrier
 
 ## 2026-09-09

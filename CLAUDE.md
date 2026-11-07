@@ -38,7 +38,7 @@ their own application.
 - `include/micro-os-plus/architecture.h`: the single public entry header.
   It includes `micro-os-plus/project-config.h` and
   `micro-os-plus/architecture-defines.h` if present, and exposes the rest only
-  when `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` is defined; in that case
+  when `MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED` is defined; in that case
   it also rejects targets other than 32-bit Cortex-A and Cortex-R. It
   requires C++20 when compiled as C++.
 - `include/micro-os-plus/architecture-aarch32/`:
@@ -112,11 +112,11 @@ xpm run xcdl-export
 
 Exported targets:
 
-- CMake: `micro-os-plus::architectures-aarch32` and the generic
-  `micro-os-plus::architecture` (an `INTERFACE` library; sources are compiled
+- CMake: `micro-os-plus::architectures-aarch32`
+  (an `INTERFACE` library; sources are compiled
   by the consumer).
-- meson: `micro_os_plus_architectures_aarch32_dependency` and the generic
-  `micro_os_plus_architecture_dependency`, with the corresponding
+- meson: `micro_os_plus_architecture_aarch32_dependency` 
+  with the corresponding
   `_compile_c_args` and `_compile_cpp_args` variables.
 
 The dependency on `@micro-os-plus/semihosting` is deliberately not declared

@@ -91,7 +91,7 @@ Issues 1 to 19 are closed; the others remain open.
    AArch32 state. The check is now in
    `include/micro-os-plus/architecture.h`, so it applies to every source,
    not only to the semihosting one. When
-   `MICRO_OS_PLUS_ARCHITECTURES_AARCH32_ENABLED` is defined, it accepts only
+   `MICRO_OS_PLUS_ARCHITECTURE_AARCH32_ENABLED` is defined, it accepts only
    `__arm__` targets whose `__ARM_ARCH_PROFILE` is `'A'` or `'R'`; the
    M-profile case has a dedicated message. The misleading comment was
    removed, and the README files document the restriction. Verified with
@@ -110,7 +110,7 @@ Issues 1 to 19 are closed; the others remain open.
    wrappers issue the `__asm__` directly, or giving them internal linkage.
    This finding is uncertain in impact; it is reported for completeness.
 
-   **Fixed:** a new `MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE` macro in
+   **Fixed:** a new `MICRO_OS_PLUS_ALWAYS_INLINE` macro in
    `defines.h` expands to `static inline __attribute__ ((always_inline))`
    in C and to `inline __attribute__ ((always_inline))` in C++. It is used
    on all declarations and definitions of the C and C++ wrappers, so in C++
@@ -194,7 +194,7 @@ Issues 1 to 19 are closed; the others remain open.
     Verified with arm-none-eabi-gcc 15.2.1 on Cortex-A7 and Cortex-R5, in
     Arm and Thumb states: an assembly file that includes the header without
     any extra definition assembles, and can use
-    `MICRO_OS_PLUS_INTEGER_STARTUP_STACK_FILL_MAGIC`; files that still
+    `MICRO_OS_PLUS_ARCHITECTURE_STACK_FILL_MAGIC`; files that still
     define `__ASSEMBLY__` by hand (the Cortex-M convention) also assemble;
     the Cortex-M `#error` is also issued from assembly; C and C++ are
     unaffected. The Cortex-M package still tests `__ASSEMBLY__`, so the two
@@ -349,7 +349,7 @@ issues 16 and 17 (see above).
 
     **Fixed:** both `sp()` functions are `[[nodiscard]]`; discarding the
     result now warns with GCC and clang. The C++ branch of
-    `MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE` now uses the standard
+    `MICRO_OS_PLUS_ALWAYS_INLINE` now uses the standard
     attribute syntax (`[[gnu::always_inline]] inline`); the C branch keeps
     `__attribute__`, since C11 has no standard attribute syntax. Forced
     inlining is unchanged (no out-of-line copies at `-O0`). The `(void)`

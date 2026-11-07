@@ -1,7 +1,7 @@
 {
   "name": "@micro-os-plus/architecture-aarch32",
-  "version": "4.2.1",
-  "description": "A source code library with the µOS++ architecture definitions for Arm AArch32 (32-bit Cortex-A and Cortex-R)",
+  "version": "5.0.0-pre",
+  "description": "A source code library with the µOS++ architecture port for Arm AArch32 (32-bit Cortex-A and Cortex-R)",
   "keywords": [
     "xpack",
     "c++",
@@ -45,7 +45,7 @@
     "jsonc-parser": "^3.3.1"
   },
   "scripts": {
-    "generate-top-commons": "node node_modules/@xpack/npm-packages-helper/maintenance-scripts/generate-top-commons.mjs --micro-os-plus",
+    "generate-top-commons": "node node_modules/@xpack/npm-packages-helper/maintenance/scripts/generate-top-commons.mjs --micro-os-plus",
     "npm-install": "npm install",
     "npm-link-helpers": "npm link @xpack/npm-packages-helper",
     "npm-outdated": "npm outdated",
@@ -63,10 +63,11 @@
       "@xpack-dev-tools/clang": "21.1.8-1.1"
     },
     "actions": {
-      "clang-format": "node scripts/clang-format.mjs",
-      "cmake-format": "node scripts/cmake-format.mjs",
-      "jsonc-format": "node scripts/jsonc-format.mjs",
-      "xcdl-export": "node scripts/xcdl-export.mjs xcdl-package.json*"
+      "clang-format": "node maintenance/scripts/clang-format.mjs",
+      "cmake-format": "node maintenance/scripts/cmake-format.mjs",
+      "jsonc-format": "node maintenance/scripts/jsonc-format.mjs",
+      "xcdl-export": "node maintenance/scripts/xcdl-export.mjs xcdl-package.json*",
+      "xpm-link": "xpm link"
     }
   },
   "engines": {
