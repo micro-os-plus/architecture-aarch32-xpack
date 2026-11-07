@@ -8,7 +8,7 @@ and close existing issues and pull requests.
 
 ## 2026-11-07
 
-* v5.0.0
+* v5.0.0q
 * b15182c re-generate top commons
 
 ## 2026-10-09
